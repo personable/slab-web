@@ -1,0 +1,30 @@
+import { Canvas, Meta, Story, ArgsTable } from "@storybook/addon-docs";
+import ButtonIcon from "../components/ButtonIcon";
+import Button from "../components/Button";
+
+<Meta title="ButtonIcon" component={ButtonIcon} subcomponents={{ Button }} />
+
+export const Template = (args) => <ButtonIcon {...args} />;
+
+# ButtonIcon
+
+Tight spaces.
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      accessibilityLabel: "Hi",
+      children: "Hi",
+      size: "medium",
+      color: "primary",
+      minimal: false,
+      shape: "circle",
+      iconName: "group",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />

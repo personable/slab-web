@@ -1,0 +1,308 @@
+import { Canvas, Meta, Story, ArgsTable } from "@storybook/addon-docs";
+import Button from "../components/Button";
+
+<Meta title="Button" component={Button} />
+
+export const Template = (args) => <Button {...args} />;
+
+# Button
+
+Yup it's a button.
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      children: "Default Button",
+      color: "subtle",
+      size: "medium",
+      disabled: false,
+      outline: false,
+      readOnly: false,
+      iconName: "group",
+      iconPosition: "before",
+      loading: false,
+      minimal: false,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## Solid Buttons
+
+<Canvas>
+  <Story
+    name="primary"
+    args={{
+      children: "Primary Button",
+      color: "primary",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="secondary"
+    args={{
+      children: "Secondary Button",
+      color: "secondary",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="subtle"
+    args={{
+      children: "Subtle Button",
+      color: "subtle",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="success"
+    args={{
+      children: "Success Button",
+      color: "success",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="destroy"
+    args={{
+      children: "Destroy Button",
+      color: "destroy",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Outline Buttons
+
+<Canvas>
+  <Story
+    name="outline primary"
+    args={{
+      children: "Primary Button",
+      color: "primary",
+      outline: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="outline secondary"
+    args={{
+      children: "Secondary Button",
+      color: "secondary",
+      outline: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="outline subtle"
+    args={{
+      children: "Subtle Button",
+      color: "subtle",
+      outline: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="outline success"
+    args={{
+      children: "Success Button",
+      color: "success",
+      outline: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="outline destroy"
+    args={{
+      children: "Destroy Button",
+      color: "destroy",
+      outline: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Minimal Buttons
+
+<Canvas>
+  <Story
+    name="minimal primary"
+    args={{
+      children: "Primary Button",
+      color: "primary",
+      minimal: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="minimal secondary"
+    args={{
+      children: "Secondary Button",
+      color: "secondary",
+      minimal: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="minimal subtle"
+    args={{
+      children: "Subtle Button",
+      color: "subtle",
+      minimal: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="minimal success"
+    args={{
+      children: "Success Button",
+      color: "success",
+      minimal: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="minimal destroy"
+    args={{
+      children: "Destroy Button",
+      color: "destroy",
+      minimal: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Size
+
+<Canvas>
+  <Story
+    name="small"
+    args={{
+      children: "Small",
+      size: "small",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="small outline"
+    args={{
+      children: "Small",
+      size: "small",
+      outline: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="small minimal"
+    args={{
+      children: "Small",
+      size: "small",
+      minimal: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="medium"
+    args={{
+      children: "Medium",
+      size: "medium",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="medium outline"
+    args={{
+      children: "Medium",
+      size: "medium",
+      outline: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="medium minimal"
+    args={{
+      children: "Medium",
+      size: "medium",
+      minimal: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="large"
+    args={{
+      children: "Large",
+      size: "large",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="large outline"
+    args={{
+      children: "Large",
+      size: "large",
+      outline: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="large minimal"
+    args={{
+      children: "Large",
+      size: "large",
+      minimal: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## IconName / IconPosition
+
+<Canvas>
+  <Story
+    name="icon before"
+    args={{
+      children: "Icon Before",
+      iconName: "group",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon after"
+    args={{
+      children: "Icon After",
+      iconName: "group",
+      iconPosition: "after",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
