@@ -85,6 +85,8 @@ const getMinimalOutlineColors = (color, isOutline) => {
 const StyledButton = styled.button`
   ${(props) =>
     buttonResetStyles({ disabled: props.disabled, readOnly: props.readOnly })}
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   line-height: 1.1;
   display: inline-flex;
   align-items: center;
