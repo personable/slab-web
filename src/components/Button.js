@@ -44,6 +44,7 @@ const getMinimalOutlineColors = (color, isOutline) => {
       color: var(--cc_color_utility_${color});
       &:hover {
         color: var(--cc_color_utility_${color}_darken_10);
+        background: var(--cc_color_button_background_${color}_alpha_10);
       }
       ${
         isOutline
@@ -61,6 +62,9 @@ const getMinimalOutlineColors = (color, isOutline) => {
       background: transparent;
       color: var(--cc_color_link_${color});
       &:hover {
+        background: var(--cc_color_button_background_${color}_alpha_${
+      color === "subtle" ? "70" : "10"
+    });
         color: var(--cc_color_link_${color}_darken_15);
       }
       ${

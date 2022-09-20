@@ -24,12 +24,12 @@ const ButtonIcon = ({
 }) => {
   return (
     <StyledButton
-      {...props}
       minimal={minimal}
       outline={false}
       size={size}
       color={color}
       shape={shape}
+      {...props}
     >
       <ScreenReaderContent>{accessibilityLabel}</ScreenReaderContent>
     </StyledButton>

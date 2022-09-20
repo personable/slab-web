@@ -14,7 +14,7 @@ const StyledButton = styled(Button)`
 // end styled components
 
 const ButtonCondensed = ({ size, color, ...props }) => {
-  return <StyledButton {...props} minimal size={size} color={color} />;
+  return <StyledButton minimal size={size} color={color} {...props} />;
 };
 
 ButtonCondensed.propTypes = {

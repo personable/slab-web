@@ -13,11 +13,11 @@ const StyledButtonIcon = styled(ButtonIcon)`
 const ButtonIconCondensed = ({ accessibilityLabel, size, color, ...props }) => {
   return (
     <StyledButtonIcon
-      {...props}
       accessibilityLabel={accessibilityLabel}
       minimal={true}
       size={size}
       color={color}
+      {...props}
     />
   );
 };
