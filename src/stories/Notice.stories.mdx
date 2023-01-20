@@ -1,0 +1,240 @@
+import { Canvas, Meta, Story, ArgsTable } from "@storybook/addon-docs";
+import Notice from "../components/Notice";
+import Button from "../components/Button";
+import Spinner from "../components/Spinner";
+
+<Meta title="Notice" component={Notice} />
+
+export const Template = (args) => <Notice {...args} />;
+const lorem =
+  "Proin eget tortor risus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque.";
+
+# Notice
+
+- Use `<Notice />` to communicate status (something happened or is happening), or to alert the user to important information (scheduled downtime, upcoming feature changes, etc.).
+- `<Notice />` accepts text or components/HTML as `children`. It supplies basic styles to format any text inside it, but any other formatting is up to you.
+- `<Notice />` can have a call to action (see `contentAfter` example) or be purely informational.
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      children: lorem,
+      size: "medium",
+      color: "success",
+      contentAlign: "center",
+      hideIcon: false,
+      className: undefined,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## color / size
+
+Setting the `color` prop switches between our `utility` design tokens and adds a default icon. The icon can be changed via the `iconName` prop. **Note: This storybook uses [an updated version of Material Design Icons](https://fonts.google.com/icons?icon.set=Material+Icons), so it won't 100% match our icon set.**
+
+<Canvas>
+  <Story
+    name="info small"
+    args={{
+      children: lorem,
+      size: "small",
+      color: "info",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="success small"
+    args={{
+      children: lorem,
+      size: "small",
+      color: "success",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="caution small"
+    args={{
+      children: lorem,
+      size: "small",
+      color: "caution",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="destroy small"
+    args={{
+      children: lorem,
+      size: "small",
+      color: "destroy",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="info medium"
+    args={{
+      children: lorem,
+      size: "medium",
+      color: "info",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="success medium"
+    args={{
+      children: lorem,
+      size: "medium",
+      color: "success",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="caution medium"
+    args={{
+      children: lorem,
+      size: "medium",
+      color: "caution",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="destroy medium"
+    args={{
+      children: lorem,
+      size: "medium",
+      color: "destroy",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="info large"
+    args={{
+      children: lorem,
+      size: "large",
+      color: "info",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="success large"
+    args={{
+      children: lorem,
+      size: "large",
+      color: "success",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="caution large"
+    args={{
+      children: lorem,
+      size: "large",
+      color: "caution",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="destroy large"
+    args={{
+      children: lorem,
+      size: "large",
+      color: "destroy",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## contentAfter
+
+<Canvas>
+  <Story
+    name="contentAfter"
+    args={{
+      children: "Photos successfully processed",
+      size: "large",
+      color: "success",
+      contentAfter: <Button color="success">See Uploaded Photos</Button>,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## contentBefore
+
+If `contentBefore` is supplied, it will replace the Notice's icon.
+
+<Canvas>
+  <Story
+    name="contentBefore"
+    args={{
+      children: "We are processing your Photos. Sit tight!",
+      contentBefore: (
+        <Spinner
+          size="small"
+          trackColor="var(--cc_color_border_default)"
+          meterColor="var(--cc_color_text_subtle)"
+        />
+      ),
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## contentAlign
+
+Use `contentAlign="top"` for longer content (a headline and a paragraph, for example).
+
+<Canvas>
+  <Story
+    name="contentAlign"
+    args={{
+      children: (
+        <div>
+          <h3 style={{ marginTop: 0, marginBottom: 8 }}>Some Headline</h3>
+          <p style={{ margin: 0 }}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
+            hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus
+            rhoncus pulvinar aliquam.
+          </p>
+        </div>
+      ),
+      contentAlign: "top",
+      size: "large",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## hideIcon
+
+<Canvas>
+  <Story
+    name="hideIcon"
+    args={{
+      children: "Sometimes, you just don't want an icon. That's cool, too.",
+      color: "caution",
+      hideIcon: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

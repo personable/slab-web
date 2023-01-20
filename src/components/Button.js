@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes, { checkPropTypes } from "prop-types";
+import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { buttonResetStyles, buttonSize } from "./shared/styles";
 import Spinner from "./Spinner";
@@ -18,23 +18,13 @@ const getFontSize = {
 };
 
 const getSolidColors = (color) => {
-  if (color === "destroy" || color === "success") {
-    return `
-      color: white;
-      background: var(--cc_color_utility_${color});
-      &:hover {
-        background: var(--cc_color_utility_${color}_darken_10);
-      }
-    `;
-  } else {
-    return `
-      color: var(--cc_color_button_text_${color});
-      background: var(--cc_color_button_background_${color});
-      &:hover {
-        background: var(--cc_color_button_background_${color}_darken_10);
-      }
+  return `
+    color: var(--cc_color_button_text_${color});
+    background: var(--cc_color_button_background_${color});
+    &:hover {
+      background: var(--cc_color_button_background_${color}_darken_10);
+    }
   `;
-  }
 };
 
 const getMinimalOutlineColors = (color, isOutline) => {
@@ -49,9 +39,9 @@ const getMinimalOutlineColors = (color, isOutline) => {
       ${
         isOutline
           ? `
-              border-color: var(--cc_color_utility_${color});
+              border-color: var(--cc_color_button_background_${color});
               &:hover {
-                border-color: var(--cc_color_utility_${color}_darken_10);
+                border-color: var(--cc_color_button_background_${color}_darken_10);
               }
             `
           : null

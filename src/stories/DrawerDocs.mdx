@@ -1,0 +1,52 @@
+import { ArgsTable } from "@storybook/addon-docs";
+import Drawer from "../components/Drawer";
+
+# Drawer
+
+Drawer is a modal that's ideal for secondary menus or long-form copy that's too large for a Popover. It's built on [Floating-UI React DOM Interactions](https://floating-ui.com/docs/react-dom-interactions).
+
+## Controlled component
+
+Drawer is a controlled component. Show/hide it by toggling the `isOpen` prop. When `isOpen` changes (or Drawer is closed via ESC or clicking off the Drawer's contents), `onOpenChange` is fired.
+
+## Implementation
+
+<ArgsTable of={Drawer} />
+
+```jsx
+import React, { useState } from "react";
+import Drawer from './somewhere!'
+
+const [isOpen, setIsOpen] = useState(false);
+const handleToggle = () => {
+  setIsOpen((prevIsOpen) => !prevIsOpen);
+};
+
+***
+
+<Drawer
+  trigger={
+    <button type="button">
+      {isOpen ? "Close Drawer" : "Open Drawer"}
+    </button>
+  }
+  isOpen={isOpen}
+  onOpenChange={setIsOpen}
+  placement="top"
+>
+  <div style={{ padding: "2rem" }}>
+    <div>Hello, I'm Drawer's content.</div>
+    <button type="button" onClick={handleToggle}>
+      Close Drawer
+    </button>
+  </div>
+</Drawer>
+```
+
+## isFullScreen, mountNodeId
+
+By default, Drawer displays an overlay/backdrop and renders full-screen. It automatically renders in a portal at the end of the DOM.
+
+If you want Drawer to render inside a parent element with no overlay, set `isFullScreen` to `false`, and specify the parent using `mountNodeId`.
+
+> Be sure to set `position: relative;` on the parent, so Drawer can position itself using absolute positioning.
