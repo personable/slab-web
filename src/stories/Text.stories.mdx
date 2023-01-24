@@ -1,0 +1,77 @@
+import { Canvas, Meta, Story, ArgsTable } from "@storybook/addon-docs";
+import Text from "../components/Text";
+
+<Meta title="Text" component={Text} />
+
+export const Template = (args) => <Text {...args} />;
+
+# Text
+
+One-stop shop for text styles on the web.
+
+- Sensible defaults, but also flexible. For example, sizes `xxxl` and `xxl` render as `h1` with `heading` font-family by default (see code examples under props table).
+- Automatically bumps sizes up 1px if `heading` font-family (Averta) is being used.
+- Margin to set to `0` by default because we don't do a lot of long-form text in the app itself. Add margin when you need it via the `ccMargin` prop.
+- Can be extended as a `styled-component` if you want to customize more than the props allow (add padding, add a bottom-border, etc.).
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      children:
+        "Welcome to CompanyCam. The visual-first job site communication app.",
+      size: "xxxl",
+      color: "default",
+      as: "h1",
+      ccMargin: "none xl",
+      family: "heading",
+      display: "block",
+      className: "cooltext",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+<Canvas isColumn columns={1} withSource="open">
+  <div>
+    <Text size="xxxl" as="h1" ccMargin="none none l">
+      This is an H1 Heading
+    </Text>
+    <Text size="xxl" as="h2" ccMargin="none none m">
+      This is an H2 Heading
+    </Text>
+    <Text size="m" as="p" ccMargin="m none xs" family="heading">
+      Some great introductory copy here. Really important information to set the
+      stage for the content below it.
+    </Text>
+    <Text size="xs" color="nonessential">
+      Last modified January 24, 2023. This is kinda nonessential text.
+    </Text>
+    <Text size="s" as="p" ccMargin="m none l" color="subtle">
+      Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Nulla
+      porttitor accumsan tincidunt. Donec sollicitudin molestie malesuada. Nulla
+      porttitor accumsan tincidunt.{" "}
+      <strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</strong>{" "}
+      Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Praesent
+      sapien massa, convallis a pellentesque nec, egestas non nisi. Pellentesque
+      in ipsum id orci porta dapibus. Vestibulum ante ipsum primis in faucibus
+      orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor
+      sit amet aliquam vel, ullamcorper sit amet ligula. Cras ultricies ligula
+      sed magna dictum porta.
+    </Text>
+    <div
+      style={{
+        padding: "2rem",
+        backgroundColor: "var(--cc_color_brand_primary)",
+        color: "var(--cc_color_brand_accent)",
+      }}
+    >
+      <Text size="xl" as="h1" color="inherit">
+        I am inheriting my color from my parent. Good for one-offs.
+      </Text>
+    </div>
+  </div>
+</Canvas>

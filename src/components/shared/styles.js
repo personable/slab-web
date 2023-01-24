@@ -23,6 +23,15 @@ export const focusStyles = css`
 `;
 
 /*
+ * --- FONTS
+ */
+export const systemFontFamily = `font-family: system-ui, -apple-system, BlinkMacSystemFont,
+'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;`;
+
+export const headingFontFamily = `font-family: 'Averta', system-ui, -apple-system, BlinkMacSystemFont,
+'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;`;
+
+/*
  * --- CHECKBOX/RADIO SHARED STYLES
  */
 export const CheckboxRadioContainer = styled.div`
