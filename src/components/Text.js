@@ -1,8 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
-import { headingFontFamily, systemFontFamily } from "./shared/styles.js";
+import {
+  headingFontFamily,
+  systemFontFamily,
+  spacingTokensToCSS,
+} from "./shared/styles.js";
 
+// Each size prop comes with default font-family, font-size, html element, etc.
 const getStyles = {
   xxxl: {
     size: "var(--cc_size_text_xxxl)",
@@ -58,59 +63,40 @@ const getStyles = {
   },
 };
 
-const getFontFamily = (size, userChosenFontFamily) => {
-  return userChosenFontFamily || getStyles[size].family;
-};
-
-const getFontFamilyCSS = (size, userChosenFontFamily) => {
-  return getFontFamily(size, userChosenFontFamily) === "heading"
-    ? headingFontFamily
-    : systemFontFamily;
-};
-
-const getFontSize = (size, userChosenFontFamily) => {
-  const initialFontSize = getStyles[size].size;
-  const fontFamilyIsHeading =
-    getFontFamily(size, userChosenFontFamily) === "heading";
-
-  if (fontFamilyIsHeading) {
-    return `calc(${initialFontSize} + 1px)`;
-  } else {
-    return initialFontSize;
-  }
-};
-
-const getSpacing = (spacing) => {
-  const spacingWhiteList = ["xxl", "xl", "l", "m", "s", "xs", "xxs"];
-  const spacingToArray = spacing.split(" ");
-  const spacingToTokens = [];
-  spacingToArray.forEach((space) => {
-    if (spacingWhiteList.includes(space)) {
-      spacingToTokens.push(`var(--cc_size_spacing_${space})`);
-    } else {
-      return spacingToTokens.push("0");
-    }
-  });
-  return spacingToTokens.join(" ");
-};
-
-// begin styled components
+// #region styled-components
 const StyledText = styled.span`
+  /* unset all global typography styles */
   all: unset;
+
+  /* default is block */
   display: ${(props) => props.textDisplay};
+
+  /* Component can inherit font color for one-offs */
   color: ${(props) =>
     props.textColor === "inherit"
       ? "inherit"
       : `var(--cc_color_text_${props.textColor})`};
-  ${(props) => getFontFamilyCSS(props.size, props.userChosenFontFamily)}
-  font-size: ${(props) => getFontSize(props.size, props.userChosenFontFamily)};
+
+  /* Use either Averta (heading) or system font stack default */
+  ${(props) =>
+    props.fontFamilyIsHeading ? headingFontFamily : systemFontFamily}
+
+  /* Add 1px to font size if heading font family, due to Averta lookin' too small */
+  font-size: ${(props) =>
+    props.fontFamilyIsHeading
+      ? `calc(${getStyles[props.size].size} + 1px)`
+      : getStyles[props.size].size};
   line-height: ${(props) => getStyles[props.size].lineHeight};
+
+  /* if ccMargin is specified in props, convert spacing tokens to CSS variables */
   ${(props) =>
     props.ccMargin
       ? css`
-          margin: ${getSpacing(props.ccMargin)};
+          margin: ${spacingTokensToCSS(props.ccMargin)};
         `
       : null}
+
+  /* if user specifies weight in props OR there is a weight default for the font size, set it in CSS */
   ${(props) =>
     props.weight || getStyles[props.size].weight
       ? css`
@@ -118,7 +104,7 @@ const StyledText = styled.span`
         `
       : null}
 `;
-// end styled components
+// #endregion
 
 const Text = ({
   as,
@@ -135,9 +121,11 @@ const Text = ({
 }) => {
   return (
     <StyledText
-      as={as || getStyles[size].el}
+      as={as || getStyles[size].el} // if user supplies as, use that instead of the default
       size={size}
-      userChosenFontFamily={family}
+      fontFamilyIsHeading={
+        family === "heading" || getStyles[size].family === "heading"
+      }
       ccMargin={ccMargin}
       textColor={color}
       weight={weight}

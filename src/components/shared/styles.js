@@ -115,3 +115,17 @@ export const buttonSize = {
   medium: "var(--cc_size_avatar_l)",
   large: "48px",
 };
+
+export const spacingTokensToCSS = (spacing) => {
+  const spacingWhiteList = ["xxl", "xl", "l", "m", "s", "xs", "xxs"];
+  const spacingToArray = spacing.split(" ");
+  const spacingToTokens = [];
+  spacingToArray.forEach((space) => {
+    if (spacingWhiteList.includes(space)) {
+      spacingToTokens.push(`var(--cc_size_spacing_${space})`);
+    } else {
+      return spacingToTokens.push("0");
+    }
+  });
+  return spacingToTokens.join(" ");
+};
