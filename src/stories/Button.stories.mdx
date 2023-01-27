@@ -5,9 +5,23 @@ import Button from "../components/Button";
 
 export const Template = (args) => <Button {...args} />;
 
-# Button
+# 🟦 Button
 
-Yup it's a button.
+Defaults to rendering as a `<button type="button" />`, but will render as a link if an `href` prop is provided.
+
+## Usage
+
+```jsx
+import Button from 'components/shared/DesignSystem/SlabTransferPortal/Buttons/Button';
+
+---
+
+<Button color="primary" onClick={() => {}} iconName="account-multiple">
+  Primary Button
+</Button>
+```
+
+## Props Playground
 
 <Canvas>
   <Story
@@ -19,7 +33,7 @@ Yup it's a button.
       disabled: false,
       outline: false,
       readOnly: false,
-      iconName: "group",
+      iconName: "account-multiple",
       iconPosition: "before",
       loading: false,
       minimal: false,
@@ -290,7 +304,7 @@ Yup it's a button.
     name="icon before"
     args={{
       children: "Icon Before",
-      iconName: "group",
+      iconName: "account-multiple",
     }}
   >
     {Template.bind({})}
@@ -299,8 +313,61 @@ Yup it's a button.
     name="icon after"
     args={{
       children: "Icon After",
-      iconName: "group",
+      iconName: "account-multiple",
       iconPosition: "after",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Button rendering as a link via `href` prop
+
+<Canvas>
+  <Story
+    name="link"
+    args={{
+      children: "Please Google That",
+      href: "https://google.com",
+      iconName: "open-in-new",
+      iconPosition: "after",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Loading
+
+<Canvas>
+  <Story
+    name="loading"
+    args={{
+      children: "I Am Loading",
+      loading: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Disabled / ReadOnly
+
+<Canvas>
+  <Story
+    name="disabled"
+    args={{
+      children: "I Am Disabled",
+      disabled: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="read only"
+    args={{
+      children: "I Am ReadOnly",
+      readOnly: true,
     }}
   >
     {Template.bind({})}

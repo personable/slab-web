@@ -5,28 +5,38 @@ import Text from "../components/Text";
 
 export const Template = (args) => <Text {...args} />;
 
-# Text
+# ✍️ Text
 
-One-stop shop for text styles on the web.
+- Sensible defaults based on `size`, with the flexibility to render as any HTML element (see code examples under props table).
+- Automatically nudges sizes up 1px if `heading` font-family (Averta) is being used.
+- Margins reset to `0` by default (we don't do a lot of long-form text in the app itself). Add margin when you need it via the `ccMargin` prop.
+- Can be extended as a `styled-component`.
 
-- Sensible defaults, but also flexible. For example, sizes `xxxl` and `xxl` render as `h1` with `heading` font-family by default (see code examples under props table).
-- Automatically bumps sizes up 1px if `heading` font-family (Averta) is being used.
-- Margin to set to `0` by default because we don't do a lot of long-form text in the app itself. Add margin when you need it via the `ccMargin` prop.
-- Can be extended as a `styled-component` if you want to customize more than the props allow (add padding, add a bottom-border, etc.).
+## Usage
+
+```jsx
+import Text from 'components/shared/DesignSystem/SlabTransferPortal/Text';
+
+---
+
+<Text size="xxxl" as="h1" ccMargin="none none l">
+  This is an H1 Heading
+</Text>
+```
+
+## Props Playground
 
 <Canvas>
   <Story
     name="default"
     args={{
       children:
-        "Welcome to CompanyCam. The visual-first job site communication app.",
-      size: "xxxl",
+        "Text renders as a paragraph in size `s` by default. Play with the controls to change its appearance.",
+      size: "s",
       color: "default",
-      as: "h1",
-      ccMargin: "none xl",
-      family: "heading",
+      as: "p",
+      family: "system",
       display: "block",
-      className: "cooltext",
     }}
   >
     {Template.bind({})}
@@ -34,6 +44,87 @@ One-stop shop for text styles on the web.
 </Canvas>
 
 <ArgsTable story="default" />
+
+## Sizes and Their Defaults
+
+Each `size` comes with product design-approved defaults for font-family and HTML element. However, the HTML element can be changed via the `as` prop for flexibility. If you really want a `<span>` that looks like an `<h1>`, the power is in your hands!
+
+<Canvas isColumn columns={1}>
+  <Story
+    name="xxxl"
+    args={{
+      children: "xxxl renders as h1 in heading font family",
+      size: "xxxl",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="xxl"
+    args={{
+      children: "xxl renders as h1 in heading font family",
+      size: "xxl",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="xl"
+    args={{
+      children: "xl renders as h2 in heading font family",
+      size: "xl",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="l"
+    args={{
+      children: "l renders as h3 in system font family",
+      size: "l",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="m"
+    args={{
+      children: "m renders as p in system font family",
+      size: "m",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="s"
+    args={{
+      children: "s renders as p in system font family",
+      size: "s",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="xs"
+    args={{
+      children: "xs renders as span in system font family",
+      size: "xs",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="xxs"
+    args={{
+      children: "xxs renders as span in system font family",
+      size: "xxs",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Usage Examples
 
 <Canvas isColumn columns={1} withSource="open">
   <div>
@@ -50,7 +141,7 @@ One-stop shop for text styles on the web.
     <Text size="xs" color="nonessential">
       Last modified January 24, 2023. This is kinda nonessential text.
     </Text>
-    <Text size="s" as="p" ccMargin="m none l" color="subtle">
+    <Text size="s" as="p" ccMargin="m none none" color="subtle">
       Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Nulla
       porttitor accumsan tincidunt. Donec sollicitudin molestie malesuada. Nulla
       porttitor accumsan tincidunt.{" "}
@@ -62,16 +153,49 @@ One-stop shop for text styles on the web.
       sit amet aliquam vel, ullamcorper sit amet ligula. Cras ultricies ligula
       sed magna dictum porta.
     </Text>
-    <div
-      style={{
-        padding: "2rem",
-        backgroundColor: "var(--cc_color_brand_primary)",
-        color: "var(--cc_color_brand_accent)",
-      }}
-    >
-      <Text size="xl" as="h1" color="inherit">
-        I am inheriting my color from my parent. Good for one-offs.
-      </Text>
-    </div>
   </div>
 </Canvas>
+
+## One-Off/Custom Styles
+
+<br />
+
+### `color="inherit"`
+
+In addition to our text-color design tokens, Text's `color` prop accepts `inherit`, which lets the component inherit its color from the CSS cascade.
+
+<Canvas isColumn columns={1} withSource="open">
+  <div
+    className="dark-environment"
+    style={{
+      padding: "2rem",
+      backgroundColor: "var(--cc_color_background_1)",
+      color: "var(--cc_color_brand_upgrade)",
+    }}
+  >
+    <Text size="xl" as="h1" color="inherit" display="inline">
+      I am inheriting my color from my parent.
+    </Text>
+    &nbsp;
+    <Text size="xl" as="h1" display="inline">
+      But I am not.
+    </Text>
+  </div>
+</Canvas>
+
+### Extending as a `styled-component`
+
+For more extensive custom styling, extend `<Text>` as a `styled-component`.
+
+```jsx
+const StyledText = styled(Text)`
+  padding-bottom: var(--cc_size_spacing_s);
+  border-bottom: var(--cc_size_border_width_s) solid var(--cc_color_border_default);
+`;
+
+---
+
+<StyledText size="xxl">
+  I will have a bottom border and a little extra bottom padding
+</StyledText>
+```

@@ -79,11 +79,11 @@ const StyledText = styled.span`
 
   /* Use either Averta (heading) or system font stack default */
   ${(props) =>
-    props.fontFamilyIsHeading ? headingFontFamily : systemFontFamily}
+    props.textFontFamily === "heading" ? headingFontFamily : systemFontFamily}
 
   /* Add 1px to font size if heading font family, due to Averta lookin' too small */
   font-size: ${(props) =>
-    props.fontFamilyIsHeading
+    props.textFontFamily === "heading"
       ? `calc(${getStyles[props.size].size} + 1px)`
       : getStyles[props.size].size};
   line-height: ${(props) => getStyles[props.size].lineHeight};
@@ -123,9 +123,7 @@ const Text = ({
     <StyledText
       as={as || getStyles[size].el} // if user supplies as, use that instead of the default
       size={size}
-      fontFamilyIsHeading={
-        family === "heading" || getStyles[size].family === "heading"
-      }
+      textFontFamily={family ? family : getStyles[size].family}
       ccMargin={ccMargin}
       textColor={color}
       weight={weight}

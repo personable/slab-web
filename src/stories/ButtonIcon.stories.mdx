@@ -6,7 +6,21 @@ import Button from "../components/Button";
 
 export const Template = (args) => <ButtonIcon {...args} />;
 
-# ButtonIcon
+# 🔵 ButtonIcon
+
+A `<Button />` extended to render a single icon. Note that the `accessibilityLabel` prop is required.
+
+## Usage
+
+```jsx
+import ButtonIcon from 'components/shared/DesignSystem/SlabTransferPortal/Buttons/ButtonIcon';
+
+---
+
+<ButtonIcon accessibilityLabel="Hi" color="primary" iconName="account-multiple" />
+```
+
+## Props Playground
 
 A `<Button>` extended to have the same width/height and support a single icon.
 
@@ -15,12 +29,11 @@ A `<Button>` extended to have the same width/height and support a single icon.
     name="default"
     args={{
       accessibilityLabel: "Hi",
-      children: "Hi",
       size: "medium",
       color: "primary",
       minimal: false,
       shape: "circle",
-      iconName: "group",
+      iconName: "account-multiple",
     }}
   >
     {Template.bind({})}

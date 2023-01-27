@@ -10,9 +10,21 @@ import Button from "../components/Button";
 
 export const Template = (args) => <ButtonIconCondensed {...args} />;
 
-# ButtonIconCondensed
+# 🔵 ButtonIconCondensed
 
-A ButtonIcon extended to not have padding.
+A `<ButtonIcon />` extended to not have padding. Note that the `accessibilityLabel` prop is required.`
+
+## Usage
+
+```jsx
+import ButtonIconCondensed from 'components/shared/DesignSystem/SlabTransferPortal/Buttons/ButtonIconCondensed';
+
+---
+
+<ButtonIconCondensed accessibilityLabel="Hi" color="primary" iconName="account-multiple" />
+```
+
+## Props Playground
 
 <Canvas>
   <Story
@@ -21,7 +33,7 @@ A ButtonIcon extended to not have padding.
       accessibilityLabel: "More information",
       size: "medium",
       color: "subtle",
-      iconName: "info",
+      iconName: "information",
     }}
   >
     {Template.bind({})}

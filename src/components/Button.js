@@ -11,7 +11,7 @@ const getPadding = {
 };
 
 const getFontSize = {
-  // bump up by 1 because Averta renders smaller than system font in general
+  // bump up by 1 because Averta renders smaller than system font
   small: "calc(var(--cc_size_text_xs) + 1px)",
   medium: "calc(var(--cc_size_text_s) + 1px)",
   large: "calc(var(--cc_size_text_m) + 1px)",
@@ -81,7 +81,7 @@ const StyledButton = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: ${(props) => `calc(${getFontSize[props.size]} * 0.25 + 2px)`};
+  gap: ${(props) => `calc(${getFontSize[props.size]} * 0.25 + 4px)`};
   border: var(--cc_size_border_width_m) solid transparent;
   border-radius: var(--cc_size_border_radius_l);
   font-weight: 700;
@@ -94,11 +94,11 @@ const StyledButton = styled.button`
   height: ${(props) => buttonSize[props.size]};
   padding: ${(props) => getPadding[props.size]};
   font-family: "Averta", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: ${(props) => getFontSize[props.size]};
 
   &:active {
-    transform: translate3d(0, 1px, 0) scale(0.95);
+    transform: scale(0.98);
   }
 `;
 
@@ -122,9 +122,9 @@ const StyledSpinner = styled(Spinner)`
   transform: translate3d(-50%, -50%, 0);
 `;
 
-const Icon = styled.span`
+const Icon = styled.i`
   // make icons render at the font size + 4px
-  font-size: ${(props) => `calc(${getFontSize[props.size]} + 5px)`};
+  font-size: ${(props) => `calc(${getFontSize[props.buttonSize]} + 4px)`};
   ${(props) =>
     props.isLoading
       ? css`
@@ -132,11 +132,13 @@ const Icon = styled.span`
         `
       : null}
 `;
+
+const Fart = styled.i``;
 // end styled components
 
 const Button = ({
-  buttonProps,
   children,
+  className,
   color,
   disabled,
   href,
@@ -148,6 +150,7 @@ const Button = ({
   outline,
   readOnly,
   size,
+  style,
   type,
   ...props
 }) => {
@@ -163,9 +166,11 @@ const Button = ({
   };
 
   const iconContent = iconName ? (
-    <Icon className="material-icons" size={size} isLoading={loading}>
-      {iconName}
-    </Icon>
+    <Icon
+      className={`mdi mdi-${iconName}`}
+      buttonSize={size}
+      isLoading={loading}
+    />
   ) : null;
 
   return (
@@ -180,6 +185,9 @@ const Button = ({
       readOnly={readOnly}
       size={size}
       type={!href ? type : null}
+      className={className}
+      style={style}
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       {iconPosition === "before" ? iconContent : null}
@@ -199,6 +207,7 @@ const Button = ({
 
 Button.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
   color: PropTypes.oneOf([
     "destroy",
     "primary",
@@ -216,10 +225,12 @@ Button.propTypes = {
   outline: PropTypes.bool,
   readOnly: PropTypes.bool,
   size: PropTypes.oneOf(["small", "medium", "large"]),
+  style: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   type: PropTypes.string,
 };
 
 Button.defaultProps = {
+  className: undefined,
   color: "subtle",
   disabled: false,
   iconName: undefined,
@@ -230,6 +241,7 @@ Button.defaultProps = {
   outline: false,
   readOnly: false,
   size: "medium",
+  style: undefined,
   type: "button",
 };
 
