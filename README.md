@@ -23,6 +23,7 @@ The storybook is set up to match the web app as closely as possible. You have ac
 - The CSS variables of our design tokens (use these whenever possible)
 - Averta (Bold/`font-weight: 700;`, ExtraBold/`font-weight: 800;`)
 - The `mdi` icon font
+- Dark mode (click the crescent moon button in the top toolbar)
 
 Components should be copy-and-paste-able into the `SlabTransferPortal` directory in the web app, when they're ready to use.
 
