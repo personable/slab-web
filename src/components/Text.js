@@ -67,6 +67,7 @@ const getStyles = {
 const StyledText = styled.span`
   /* unset all global typography styles */
   all: unset;
+  box-sizing: border-box;
 
   /* default is block */
   display: ${(props) => props.textDisplay};
