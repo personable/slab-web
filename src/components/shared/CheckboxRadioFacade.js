@@ -42,18 +42,13 @@ const FauxInput = styled.span`
   ${(props) =>
     props.isChecked
       ? css`
-          background: ${props.color
-            ? `var(--cc_color_utility_${props.color})`
-            : "var(--cc_color_button_background_secondary)"};
-          border-color: ${props.color
-            ? `var(--cc_color_utility_${props.color})`
-            : "var(--cc_color_button_background_secondary)"};
+          background: ${props.checkedBackgroundColor};
+          color: ${props.checkmarkColor};
+          border-color: ${props.checkedBackgroundColor};
         `
       : css`
-          background: transparent;
-          border-color: ${props.color
-            ? `var(--cc_color_utility_${props.color})`
-            : "var(--cc_color_border_input_inactive)"};
+          background: ${props.uncheckedBackgroundColor};
+          border-color: ${props.borderColor};
         `}
 `;
 const Icon = styled.svg`
@@ -61,9 +56,9 @@ const Icon = styled.svg`
   top: 50%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
-  fill: var(--cc_color_button_text_secondary);
-  width: ${(props) => props.facadeSize * 0.75}px;
-  height: ${(props) => props.facadeSize * 0.75}px;
+  fill: currentColor;
+  width: ${(props) => props.facadeSize * 0.66}px;
+  height: ${(props) => props.facadeSize * 0.66}px;
 `;
 // end styled components
 
@@ -107,13 +102,16 @@ const getSVGPaths = (type) => {
 const CheckboxRadioFacade = ({
   type,
   shape,
-  color,
+  borderColor,
+  checkedBackgroundColor,
+  uncheckedBackgroundColor,
+  checkmarkColor,
   isChecked,
   isHovered,
   isDisabled,
   size,
   className,
-  style
+  style,
 }) => {
   return (
     <Layout
@@ -131,7 +129,10 @@ const CheckboxRadioFacade = ({
         facadeShape={shape}
         facadeSize={size}
         isChecked={isChecked}
-        color={color}
+        borderColor={borderColor}
+        uncheckedBackgroundColor={uncheckedBackgroundColor}
+        checkedBackgroundColor={checkedBackgroundColor}
+        checkmarkColor={checkmarkColor}
       >
         {isChecked ? (
           <Icon viewBox="0 0 24 24" facadeSize={size}>
@@ -147,20 +148,26 @@ CheckboxRadioFacade.propTypes = {
   type: PropTypes.oneOf(["checkbox", "radio", "indeterminate"]).isRequired,
   shape: PropTypes.oneOf(["square", "circle"]).isRequired,
   size: PropTypes.number.isRequired,
-  color: PropTypes.oneOf([undefined, "success", "caution", "destroy"]),
+  borderColor: PropTypes.string,
+  checkedBackgroundColor: PropTypes.string,
+  uncheckedBackgroundColor: PropTypes.string,
+  checkmarkColor: PropTypes.string,
   isChecked: PropTypes.bool,
   isHovered: PropTypes.bool,
   isDisabled: PropTypes.bool,
   className: PropTypes.string,
-  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
 CheckboxRadioFacade.defaultProps = {
-  color: undefined,
+  borderColor: "var(--cc_color_border_input_inactive)",
+  checkedBackgroundColor: "var(--cc_color_button_background_secondary)",
+  uncheckedBackgroundColor: "var(--cc_color_background_1)",
+  checkmarkColor: "var(--cc_color_button_text_secondary)",
   isChecked: false,
   isHovered: false,
   isDisabled: false,
   className: undefined,
-  style: undefined
+  style: undefined,
 };
 
 export default CheckboxRadioFacade;

@@ -12,9 +12,10 @@ import {
 const Checkbox = ({
   checked,
   className,
-  color,
-  contentBefore,
-  contentAfter,
+  borderColor,
+  checkedBackgroundColor,
+  uncheckedBackgroundColor,
+  checkmarkColor,
   disabled,
   id,
   indeterminate,
@@ -26,6 +27,7 @@ const Checkbox = ({
   onMouseOver,
   onMouseOut,
   onChange,
+  shape,
   size,
   style,
   value,
@@ -85,22 +87,23 @@ const Checkbox = ({
         ref={checkboxRef}
         checked={checked}
         aria-checked={indeterminate ? "mixed" : undefined}
-        aria-describedby={`${contentBefore ? `${id}-contentBefore` : ""} ${
-          contentAfter ? `${id}-contentAfter` : ""
-        }`}
         disabled={disabled}
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
       />
       <StyledCheckboxRadioLabel
         facade={
           <StyledCheckboxRadioFacade
             type={indeterminate ? "indeterminate" : "checkbox"}
-            shape="square"
+            shape={shape}
             isChecked={checked}
             size={size}
             isHovered={isHovered}
             isDisabled={disabled}
-            color={color}
+            borderColor={borderColor}
+            checkedBackgroundColor={checkedBackgroundColor}
+            uncheckedBackgroundColor={uncheckedBackgroundColor}
+            checkmarkColor={checkmarkColor}
           />
         }
         htmlFor={id}
@@ -120,9 +123,10 @@ Checkbox.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.node.isRequired,
   checked: PropTypes.bool,
-  color: PropTypes.oneOf([undefined, "success", "caution", "destroy"]),
-  contentBefore: PropTypes.node,
-  contentAfter: PropTypes.node,
+  borderColor: PropTypes.string,
+  checkedBackgroundColor: PropTypes.string,
+  uncheckedBackgroundColor: PropTypes.string,
+  checkmarkColor: PropTypes.string,
   disabled: PropTypes.bool,
   indeterminate: PropTypes.bool,
   name: PropTypes.string,
@@ -132,6 +136,7 @@ Checkbox.propTypes = {
   onBlur: PropTypes.func,
   onMouseOver: PropTypes.func,
   onMouseOut: PropTypes.func,
+  shape: PropTypes.oneOf(["square", "circle"]),
   size: PropTypes.number,
   value: PropTypes.string,
   className: PropTypes.string,
@@ -139,11 +144,13 @@ Checkbox.propTypes = {
 };
 Checkbox.defaultProps = {
   checked: false,
-  color: undefined,
-  contentBefore: undefined,
-  contentAfter: undefined,
+  borderColor: undefined,
+  checkedBackgroundColor: undefined,
+  uncheckedBackgroundColor: undefined,
+  checkmarkColor: undefined,
   disabled: false,
   indeterminate: false,
+  shape: "square",
   size: tokens.size_spacing_m,
   onChange: () => {},
   onClick: () => {},

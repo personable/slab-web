@@ -1,0 +1,117 @@
+import { Canvas, Meta, Story, ArgsTable } from "@storybook/addon-docs";
+import Checkbox from "../components/Checkbox";
+
+<Meta title="Checkbox" component={Checkbox} />
+
+export const Template = (args) => <Checkbox {...args} />;
+
+# ✅ Checkbox
+
+A checkbox input with flexible styling.
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      label: "This is a label",
+      id: "demo-checkbox",
+      checked: true,
+      disabled: false,
+      indeterminate: false,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## Standard Checkbox vs. Asset Feed Checkbox
+
+We have two checkbox styles in the web app: a standard square-shaped input, and a larger, circular input we use in the Asset Feed.
+
+`<Checkbox />` is built to accommodate these use cases (and future checkboxes!) by exposing the following props:
+
+- `size`: the square dimensions of the checkbox itself (the label text will increase proportionally)
+- `shape`: circular or square
+- `uncheckedBackgroundColor`
+- `checkedBackgroundColor`
+- `checkmarkColor`
+- `borderColor` (visible in unchecked state only)
+
+<Canvas isColumn columns={1}>
+  <Story
+    name="shape square"
+    args={{
+      label: "Standard checkbox (used in Filters, for example)",
+      id: "demo-checkbox-shape-square",
+      checked: true,
+      shape: "square",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="shape circle"
+    args={{
+      label: "Asset Feed-style checkbox",
+      id: "demo-checkbox-shape-circle",
+      checked: true,
+      shape: "circle",
+      checkedBackgroundColor: "var(--cc_color_button_background_primary)",
+      checkmarkColor: "var(--cc_color_button_text_primary)",
+      size: 24,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="crazy custom checkbox"
+    args={{
+      label: "Crazy custom checkbox",
+      id: "demo-crazy-custom-checkbox",
+      checked: true,
+      shape: "square",
+      uncheckedBackgroundColor: "lime",
+      checkedBackgroundColor: "tomato",
+      checkmarkColor: "black",
+      borderColor: "black",
+      size: 36,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Indeterminate state
+
+With nested checkboxes, it can be useful to show the parent checkbox in a visual state that's neither checked nor unchecked.
+
+<Canvas>
+  <Story
+    name="indeterminate"
+    args={{
+      label: "I am indeterminate",
+      id: "demo-checkbox-indeterminate",
+      checked: true,
+      indeterminate: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Disabled state
+
+<Canvas>
+  <Story
+    name="disabled"
+    args={{
+      label: "I am disabled",
+      id: "demo-checkbox-disabled",
+      disabled: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

@@ -40,11 +40,14 @@ export const CheckboxRadioContainer = styled.div`
   position: relative;
 `;
 
-/* Hack to get CSS's :focus-visible for checkboxes/radios */
+/*
+This is a bit of a hack to get CSS's :focus-visible, which is
+nicer than onFocus/onBlur because it only shows the outline when
+the user is navigating by keyboard. We shouldn't be setting styles
+across components usually.
+*/
 export const StyledCheckboxRadioLabel = styled(CheckboxRadioLabel)``;
 export const StyledCheckboxRadioFacade = styled(CheckboxRadioFacade)``;
-/* End Hack */
-
 export const HiddenInput = styled.input`
   ${visuallyHidden}
   ${(props) =>
