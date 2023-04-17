@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import ReactModal from "react-modal";
 import * as tokens from "../shared/tokens.js";
+import "./modal.styles.css";
 
 import ScreenReaderContent from "../ScreenReaderContent";
 // import ModalToast from "../ModalToast/ModalToast";
@@ -81,12 +82,12 @@ const ModalBase = ({
 
   let overlayClassName = "modal-base";
   if (!shouldAnimateIn) {
-    overlayClassName += " modal-base--no-animation";
+    overlayClassName += "modal-base--no-animation";
   }
 
   let contentClassName = `modal-base ${className || ""}`;
   if (!shouldAnimateIn) {
-    contentClassName += " modal-base--no-animation";
+    contentClassName += "modal-base--no-animation";
   }
 
   return (
