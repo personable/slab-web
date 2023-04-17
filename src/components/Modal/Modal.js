@@ -1,0 +1,436 @@
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import ModalBase from "./ModalBase";
+import ModalAlert from "./ModalAlert";
+import Spinner from "../Spinner";
+
+const StyledModalBase = styled(ModalBase)`
+  border-radius: var(--cc_size_border_radius_xl);
+  ${(props) => props.size !== "large" && "max-height: 90vh;"}
+  ${(props) =>
+    !props.loading.isVisible &&
+    !props.alert.isVisible &&
+    `
+      display: grid;
+      grid-template-rows: ${props.title ? "auto " : ""}minmax(0, 1fr) ${
+      props.shouldRenderFooter ? "auto" : ""
+    };
+  `}
+`;
+const CenteredLayout = styled.div`
+  height: 100%;
+  padding: var(--cc_size_spacing_xxl) var(--cc_size_spacing_xl)
+    var(--cc_size_spacing_xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+`;
+const Header = styled.div`
+  padding: var(--cc_size_spacing_l)
+    ${(props) => (props.showCloseButton ? "60px" : "var(--cc_size_spacing_l)")}
+    var(--cc_size_spacing_m) var(--cc_size_spacing_xl);
+  border-block-end: var(--cc_size_border_width_s) solid
+    var(--cc_color_border_default);
+`;
+const Title = styled.h2`
+  margin: 0;
+  font-size: var(--cc_size_text_xl);
+  color: var(--cc_color_text_default);
+  font-weight: 700;
+`;
+const Body = styled.div`
+  padding: var(--cc_size_spacing_l) var(--cc_size_spacing_xl);
+  overflow-y: auto;
+`;
+const Footer = styled.div`
+  background: var(--cc_color_background_2);
+  padding: var(--cc_size_spacing_m);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border-bottom-left-radius: var(--cc_size_border_radius_xl);
+  border-bottom-right-radius: var(--cc_size_border_radius_xl);
+`;
+const FooterContentBefore = styled.div`
+  flex: 1;
+`;
+const FooterActions = styled.div`
+  flex-shrink: 0;
+`;
+const PrimaryActionButton = styled.button`
+  margin-inline-start: var(--cc_size_spacing_s);
+`;
+const SecondaryActionButton = styled.button``;
+
+/**
+ * @component
+ * Generic CompanyCam modal component
+ *
+ * @param [isOpen] - state to track if modal is open
+ * @param [onRequestClose] - callback that triggers when closing the modal is requested
+ * @param [label] - sets aria-label attribute for screen readers
+ * @param [showCloseButton] - close button visibility
+ * @param [size] - modal size
+ * @param [title] - modal title
+ * @param [primaryAction] - `label` and `onClick` for a primary action
+ * @param [secondaryAction] - `label` and `onClick` for a  secondary action
+ * @param [footerContentBefore] - content for footer before primary and secondary actions
+ * @param [loading] - set `isVisible` to show loading state; customize text with `message`.
+ * @param [alert] - set `isVisible` to show alert state to inform user of error/warning etc.; customize `iconName`, `iconAnimatesIn`, `title`, `message`.
+ *
+ * @example
+ *
+ * const handleClose = () => {
+ *  setModalOpen(false);
+ * };
+ *
+ *  <Modal
+        isOpen={true}
+        label="Describe modal for screen reader users"
+        onRequestClose={handleClose}
+        size={modalSize}
+        title="I am a title"
+        primaryAction={{
+          label: 'Primary Action',
+          onClick: () => {
+            console.log('primary');
+          },
+        }}
+        secondaryAction={{
+          label: 'Cancel',
+          onClick: handleClose,
+        }}
+        footerContentBefore={<p>Some optional extra information for the footer</p>}
+        alert={{
+          isVisible: modalStatus === 'alert',
+          color: 'destroy',
+          iconName: 'alert-circle',
+          iconAnimatesIn: true,
+          title: 'Well, Shoot.',
+          message:
+            'Something happened',
+          actionLabel: 'Close',
+          actionOnClick: handleClose,
+        }}
+        loading={{
+          isVisible: modalStatus === 'loading',
+          message: 'Loading...',
+        }}
+      >
+        Modal content
+      </Modal>
+ */
+
+const Modal = ({
+  isOpen,
+  label,
+  showCloseButton,
+  shouldCloseOnOverlayClick,
+  shouldAnimateIn,
+  onRequestClose,
+  children,
+  size,
+  title,
+  primaryAction,
+  secondaryAction,
+  footerContentBefore,
+  alert,
+  loading,
+  style,
+  className,
+  closeButtonStyle,
+  headerStyle,
+  bodyStyle,
+  footerStyle,
+}) => {
+  const shouldRenderFooter =
+    primaryAction.onClick ||
+    secondaryAction.onClick ||
+    primaryAction.component ||
+    secondaryAction.component ||
+    footerContentBefore;
+
+  const renderTitle = () => {
+    if (typeof title === "string") {
+      return <Title>{title}</Title>;
+    } else {
+      return title;
+    }
+  };
+
+  const renderFooterActions = () => {
+    if (!primaryAction && !secondaryAction) {
+      return null;
+    }
+
+    const renderPrimary = () => {
+      if (primaryAction.label && !primaryAction.component) {
+        return (
+          <PrimaryActionButton
+            type={primaryAction.type || "button"}
+            className={primaryAction.isDelete ? "ccb-red" : "ccb-blue"}
+            onClick={primaryAction.onClick}
+            disabled={primaryAction.disabled}
+            data-testid={primaryAction["data-testid"]}
+          >
+            {primaryAction.label}
+          </PrimaryActionButton>
+        );
+      }
+      return primaryAction.component;
+    };
+
+    const renderSecondary = () => {
+      if (secondaryAction.label && !secondaryAction.component) {
+        return (
+          <SecondaryActionButton
+            type={secondaryAction.type || "button"}
+            className="ccb-light-gray"
+            onClick={secondaryAction.onClick}
+            disabled={secondaryAction.disabled}
+            data-testid={secondaryAction["data-testid"]}
+          >
+            {secondaryAction.label}
+          </SecondaryActionButton>
+        );
+      }
+
+      return secondaryAction.component;
+    };
+
+    return (
+      <FooterActions>
+        {secondaryAction ? renderSecondary() : null}
+        {primaryAction ? renderPrimary() : null}
+      </FooterActions>
+    );
+  };
+
+  const renderModalContent = () => {
+    if (loading.isVisible) {
+      return (
+        <CenteredLayout>
+          <Spinner label={loading.message} layout="vertical" size="large" />
+        </CenteredLayout>
+      );
+    }
+    if (alert.isVisible) {
+      return (
+        <CenteredLayout>
+          <ModalAlert
+            iconName={alert.iconName}
+            iconAnimatesIn={alert.iconAnimatesIn}
+            color={alert.color}
+            title={alert.title}
+            message={alert.message}
+            actionLabel={alert.actionLabel}
+            actionOnClick={alert.actionOnClick}
+          />
+        </CenteredLayout>
+      );
+    }
+
+    return (
+      <>
+        {title ? (
+          <Header showCloseButton={showCloseButton} style={headerStyle}>
+            {renderTitle(title)}
+          </Header>
+        ) : null}
+
+        <Body style={bodyStyle}>{children}</Body>
+
+        {shouldRenderFooter ? (
+          <Footer style={footerStyle}>
+            <FooterContentBefore>{footerContentBefore}</FooterContentBefore>
+            {renderFooterActions(primaryAction, secondaryAction)}
+          </Footer>
+        ) : null}
+      </>
+    );
+  };
+
+  return (
+    <StyledModalBase
+      isOpen={isOpen}
+      onRequestClose={onRequestClose}
+      shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
+      showCloseButton={showCloseButton}
+      closeButtonStyle={closeButtonStyle}
+      label={label}
+      className={className}
+      style={style}
+      size={size}
+      title={title}
+      shouldRenderFooter={shouldRenderFooter}
+      loading={loading}
+      alert={alert}
+      shouldAnimateIn={shouldAnimateIn}
+    >
+      {renderModalContent()}
+    </StyledModalBase>
+  );
+};
+
+Modal.propTypes = {
+  /**
+   * children render in modal body
+   */
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+    PropTypes.func,
+  ]).isRequired,
+  /**
+   * state to open and close modal
+   */
+  isOpen: PropTypes.bool,
+  /**
+   * callback that triggers when closing the modal is requested
+   */
+  onRequestClose: PropTypes.func,
+  /**
+   * state to open/close modal
+   */
+  showCloseButton: PropTypes.bool,
+  /**
+   * close button visibility
+   */
+  shouldCloseOnOverlayClick: PropTypes.bool,
+  /**
+   * does the modal animate in
+   */
+  shouldAnimateIn: PropTypes.bool,
+  /**
+   * modal title
+   */
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  /**
+   * sets aria-label attribute for screen readers
+   */
+  label: PropTypes.string,
+  /**
+   * modal size
+   */
+  size: PropTypes.oneOf(["small", "medium", "large"]),
+  /**
+   * set `isVisible` to show alert state to inform user of error/warning etc.; customize `iconName`, `title`, `message`
+   */
+  alert: PropTypes.shape({
+    isVisible: PropTypes.bool,
+    color: PropTypes.string,
+    iconName: PropTypes.string,
+    iconAnimatesIn: PropTypes.bool,
+    title: PropTypes.node,
+    message: PropTypes.node,
+    actionLabel: PropTypes.string,
+    actionOnClick: PropTypes.func,
+  }),
+
+  /**
+   * set `isVisible` to show loading state; customize text with `message`
+   */
+  loading: PropTypes.shape({
+    isVisible: PropTypes.bool,
+    message: PropTypes.node,
+  }),
+  /**
+   * `label` and `onClick` for a primary action
+   */
+  primaryAction: PropTypes.shape({
+    isDelete: PropTypes.bool,
+    label: PropTypes.string,
+    onClick: PropTypes.func,
+    disabled: PropTypes.bool,
+    type: PropTypes.string,
+    component: PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.arrayOf(PropTypes.node),
+    ]),
+    "data-testid": PropTypes.string,
+  }),
+  /**
+   * `label` and `onClick` for a secondary action
+   */
+  secondaryAction: PropTypes.shape({
+    label: PropTypes.string,
+    onClick: PropTypes.func,
+    disabled: PropTypes.bool,
+    type: PropTypes.string,
+    component: PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.arrayOf(PropTypes.node),
+    ]),
+    "data-testid": PropTypes.string,
+  }),
+  /**
+   * content for footer before primary and secondary actions
+   */
+  footerContentBefore: PropTypes.node,
+  /**
+   * styled-components need className
+   */
+  className: PropTypes.string,
+
+  /**
+   * override the default styles if needed
+   */
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  closeButtonStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  headerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  bodyStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  footerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+};
+
+Modal.defaultProps = {
+  isOpen: false,
+  onRequestClose: () => {},
+  label: "Modal Content",
+  showCloseButton: true,
+  shouldCloseOnOverlayClick: true,
+  shouldAnimateIn: true,
+  size: "small",
+  title: undefined,
+  primaryAction: {
+    label: undefined,
+    onClick: undefined,
+    disabled: false,
+    type: "button",
+    isDelete: false,
+    component: null,
+    "data-testid": null,
+  },
+  secondaryAction: {
+    label: undefined,
+    onClick: undefined,
+    disabled: false,
+    type: "button",
+    component: null,
+    "data-testid": null,
+  },
+  footerContentBefore: undefined,
+  alert: {
+    isVisible: false,
+    color: "info",
+    iconName: undefined,
+    iconAnimatesIn: false,
+    title: undefined,
+    message: undefined,
+    actionLabel: undefined,
+    actionOnClick: () => {},
+  },
+  loading: {
+    isVisible: false,
+    message: undefined,
+  },
+  className: undefined,
+  style: {},
+  closeButtonStyle: {},
+  headerStyle: {},
+  bodyStyle: {},
+  footerStyle: {},
+};
+
+export default Modal;
