@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import ReactModal from "react-modal";
 import * as tokens from "../shared/tokens.js";
+import ButtonIcon from "../ButtonIcon";
 import "./modal.styles.css";
 
 import ScreenReaderContent from "../ScreenReaderContent";
@@ -42,27 +43,11 @@ const StyledReactModal = styled(ReactModal)`
   }
 `;
 
-const CloseButton = styled.button`
-  font-size: var(--cc_size_text_xl);
+const CloseButton = styled(ButtonIcon)`
   position: absolute;
-  inset-inline-end: var(--cc_size_spacing_s);
   inset-block-start: var(--cc_size_spacing_s);
+  inset-inline-end: var(--cc_size_spacing_s);
   z-index: 1;
-  background: var(--cc_color_background_1_alpha_70);
-  border-radius: 100%;
-  color: var(--cc_color_link_subtle);
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-  transform: translate3d(0, 0, 0);
-
-  &:hover {
-    color: var(--cc_color_link_secondary);
-    transform: translate3d(0, 0, 0) scale(1.075);
-  }
 `;
 
 const ModalBase = ({
@@ -107,13 +92,15 @@ const ModalBase = ({
     >
       {showCloseButton && (
         <CloseButton
-          type="button"
+          minimal
+          iconName="close"
+          size="large"
           onClick={onRequestClose}
           style={closeButtonStyle}
           data-testid="shared__modal-close-button"
+          accessibilityLabel="Close Modal Button"
         >
-          <i className="mdi mdi-close" aria-hidden="true" />
-          <ScreenReaderContent>Close </ScreenReaderContent>
+          <ScreenReaderContent>Close Modal</ScreenReaderContent>
         </CloseButton>
       )}
       {children}
