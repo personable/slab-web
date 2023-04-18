@@ -84,6 +84,7 @@ const Modal = ({
   className,
   closeButtonStyle,
   headerStyle,
+  hideHeaderUnderline,
   bodyStyle,
   footerStyle,
 }) => {
@@ -172,6 +173,10 @@ const Modal = ({
       );
     }
 
+    let headerStyle = undefined;
+    if (hideHeaderUnderline) {
+      headerStyle = { borderBottom: 0 };
+    }
     return (
       <>
         {title ? (
@@ -322,6 +327,7 @@ Modal.propTypes = {
   headerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   bodyStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   footerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  hideHeaderUnderline: PropTypes.bool,
 };
 
 Modal.defaultProps = {
@@ -371,6 +377,7 @@ Modal.defaultProps = {
   headerStyle: {},
   bodyStyle: {},
   footerStyle: {},
+  hideHeaderUnderline: false,
 };
 
 export default Modal;
