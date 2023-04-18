@@ -116,6 +116,7 @@ const Modal = ({
         return (
           <PrimaryActionButton
             color={primaryAction.isDelete ? "destroy" : "primary"}
+            type={primaryAction.type || "button"}
             onClick={primaryAction.onClick}
             disabled={primaryAction.disabled}
             data-testid={primaryAction["data-testid"]}
@@ -132,6 +133,7 @@ const Modal = ({
         return (
           <SecondaryActionButton
             color="subtle"
+            type={primaryAction.type || "button"}
             onClick={secondaryAction.onClick}
             disabled={secondaryAction.disabled}
             data-testid={secondaryAction["data-testid"]}
