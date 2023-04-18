@@ -4,6 +4,7 @@ import styled from "styled-components";
 import ModalBase from "./ModalBase";
 import ModalAlert from "./ModalAlert";
 import Spinner from "../Spinner";
+import Button from "../Button";
 
 const StyledModalBase = styled(ModalBase)`
   border-radius: var(--cc_size_border_radius_xl);
@@ -59,70 +60,12 @@ const FooterContentBefore = styled.div`
 const FooterActions = styled.div`
   flex-shrink: 0;
 `;
-const PrimaryActionButton = styled.button`
+const PrimaryActionButton = styled(Button)`
   margin-inline-start: var(--cc_size_spacing_s);
 `;
-const SecondaryActionButton = styled.button``;
-
-/**
- * @component
- * Generic CompanyCam modal component
- *
- * @param [isOpen] - state to track if modal is open
- * @param [onRequestClose] - callback that triggers when closing the modal is requested
- * @param [label] - sets aria-label attribute for screen readers
- * @param [showCloseButton] - close button visibility
- * @param [size] - modal size
- * @param [title] - modal title
- * @param [primaryAction] - `label` and `onClick` for a primary action
- * @param [secondaryAction] - `label` and `onClick` for a  secondary action
- * @param [footerContentBefore] - content for footer before primary and secondary actions
- * @param [loading] - set `isVisible` to show loading state; customize text with `message`.
- * @param [alert] - set `isVisible` to show alert state to inform user of error/warning etc.; customize `iconName`, `iconAnimatesIn`, `title`, `message`.
- *
- * @example
- *
- * const handleClose = () => {
- *  setModalOpen(false);
- * };
- *
- *  <Modal
-        isOpen={true}
-        label="Describe modal for screen reader users"
-        onRequestClose={handleClose}
-        size={modalSize}
-        title="I am a title"
-        primaryAction={{
-          label: 'Primary Action',
-          onClick: () => {
-            console.log('primary');
-          },
-        }}
-        secondaryAction={{
-          label: 'Cancel',
-          onClick: handleClose,
-        }}
-        footerContentBefore={<p>Some optional extra information for the footer</p>}
-        alert={{
-          isVisible: modalStatus === 'alert',
-          color: 'destroy',
-          iconName: 'alert-circle',
-          iconAnimatesIn: true,
-          title: 'Well, Shoot.',
-          message:
-            'Something happened',
-          actionLabel: 'Close',
-          actionOnClick: handleClose,
-        }}
-        loading={{
-          isVisible: modalStatus === 'loading',
-          message: 'Loading...',
-        }}
-      >
-        Modal content
-      </Modal>
- */
-
+const SecondaryActionButton = styled(Button)`
+  margin-inline-start: var(--cc_size_spacing_s);
+`;
 const Modal = ({
   isOpen,
   label,
@@ -169,8 +112,7 @@ const Modal = ({
       if (primaryAction.label && !primaryAction.component) {
         return (
           <PrimaryActionButton
-            type={primaryAction.type || "button"}
-            className={primaryAction.isDelete ? "ccb-red" : "ccb-blue"}
+            color={primaryAction.isDelete ? "destroy" : "primary"}
             onClick={primaryAction.onClick}
             disabled={primaryAction.disabled}
             data-testid={primaryAction["data-testid"]}
@@ -186,8 +128,7 @@ const Modal = ({
       if (secondaryAction.label && !secondaryAction.component) {
         return (
           <SecondaryActionButton
-            type={secondaryAction.type || "button"}
-            className="ccb-light-gray"
+            color="subtle"
             onClick={secondaryAction.onClick}
             disabled={secondaryAction.disabled}
             data-testid={secondaryAction["data-testid"]}
