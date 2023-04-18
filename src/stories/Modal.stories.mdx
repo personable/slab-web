@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import Modal from "../components/Modal/Modal";
 import Text from "../components/Text";
 import Spinner from "../components/Spinner";
+import SampleImage from "./assets/images/user_role_admin.png";
 
 <Meta title="Modal" component={Modal} />
 
@@ -35,22 +36,13 @@ import Modal from "components/shared/DesignSystem/SlabTransferPortal/Modal";
     label="Describe modal for screen reader users"
     onRequestClose={handleClose}
     size="small"
-    title="I am a title"
-    primaryAction={{
-      label: "Primary Action",
-      onClick: () => {},
-    }}
-    secondaryAction={{
-      label: "Cancel",
-      onClick: () => {},
-    }}
   >
-    I am the might modal content.
+    This is where modal content goes.
   </Modal>
 );
 ```
 
-## Default Modal
+## Out of the Box
 
 The official `Modal` comes with the following out of the box:
 
@@ -64,37 +56,17 @@ The official `Modal` comes with the following out of the box:
   <Story
     name="default"
     args={{
-      title: "Add Photos",
       children: (
-        <>
-          <div
-            style={{
-              borderWidth: "1.5px",
-              borderColor: "#0967d2",
-              borderStyle: "dashed",
-              borderRadius: 8,
-              height: "200px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              textAlign: "center",
-            }}
-          >
-            <Text size="m" as="h1" color="subtle">
-              Drag & drop photos here or click to upload to this project.
-            </Text>
-          </div>
-          <div style={{ marginTop: 32 }}>
-            <Text size="xs" as="p" color="subtle">
-              By uploading this Content, you represent that you have the rights
-              and authority to share all information in the Content with
-              CompanyCam, including any Personal Information belonging to you or
-              a third party. See full Terms of Use.
-            </Text>
-          </div>
-        </>
+        <div style={{ textAlign: "center" }}>
+          <img src={SampleImage} alt="sample image" width="100%" />
+          <Text size="xl" as="h1" color="default">
+            You look wonderful, today.
+          </Text>
+          <Text size="l" as="p" color="subtle" weight="400" ccMargin="s none m">
+            Here's a key to the city.
+          </Text>
+        </div>
       ),
-      hideHeaderBorder: true,
       size: "small",
     }}
   >
