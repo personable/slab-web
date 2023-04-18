@@ -21,8 +21,7 @@ const StyledModalBase = styled(ModalBase)`
 `;
 const CenteredLayout = styled.div`
   height: 100%;
-  padding: var(--cc_size_spacing_xxl) var(--cc_size_spacing_xl)
-    var(--cc_size_spacing_xl);
+  padding: var(--cc_size_spacing_xxl) var(--cc_size_spacing_xl);
   display: flex;
   align-items: center;
   justify-content: center;
