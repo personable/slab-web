@@ -1,15 +1,10 @@
 import styled, { css } from "styled-components";
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import ScreenReaderContent from './shared/ScreenReaderContent';
-import { hintTooltipStyles } from "./shared/styles";
-import { hintTooltipStyless } from "./shared/styles";
-// import AvatarInitials from './shared/components/AvatarInitials';
-// import { avatarSizes } from './shared/styles';
 
 const tooltipPositioning = {
-  'top': {
+  'top-center': {
     top: "auto",
     bottom: "100%",
     right: "auto",
@@ -33,7 +28,7 @@ const tooltipPositioning = {
     transform: "translateY(-11px)",
     borderColor: "var(--cc_color_button_background_secondary) transparent transparent transparent",
   },
-  'bottom': {
+  'bottom-center': {
     top: "100%",
     bottom: "auto",
     right: "auto",
@@ -59,7 +54,7 @@ const tooltipPositioning = {
   },
 };
 
-const hintTooltipStylesss = css`
+const hintTooltipStyles = css`
   position: relative;
   overflow: visible;
 
@@ -127,7 +122,8 @@ const avatarSizes = {
 
 const Image = styled.div`
   position: relative;
-  display: flex;
+  display: grid;
+  place-items: center;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
@@ -143,20 +139,18 @@ const Image = styled.div`
   border: 2px solid;
   border-color: ${(props) => props.color ? props.color : 'transparent'};
   color: ${(props) => props.textColor ? props.textColor : 'var(--cc_color_text_subtle)'};
-  ${(props) => props.showTitleOnHover ? hintTooltipStylesss : null};
-  /* ${(props) => props.showTitleOnHover ? hintTooltipStyless({ position: props.tooltipPosition }) : null} */
+  ${(props) => props.showTitleOnHover ? hintTooltipStyles : null};
 `;
 
 const Initials = styled.div`
   font-size: ${(props) => `${props.textSize}px`};
   font-weight: 600;
   text-align: center;
-  /* color: var(--cc_color_text_subtle); */
   font-family: 'Averta', system-ui, sans-serif;
 `;
 
 const AvatarInitials = ({ initials, avatarSize }) => {
-  const textSize = Math.round(avatarSize / 2.3125);
+  const textSize = Math.round(avatarSize / 2.4);
   return <Initials textSize={textSize}>{initials}</Initials>;
 };
 
@@ -171,6 +165,7 @@ const Avatar = ({
   style,
   showTitleOnHover,
   tooltipPosition,
+  customInitials,
 }) => {
   const avatarSize = typeof size === 'number' ? size : avatarSizes[size];
   const initials = title ? title.split(' ').map(x => x.charAt(0)).join('').substr(0, 3).toUpperCase() : null
@@ -191,7 +186,7 @@ const Avatar = ({
         <i className="mdi mdi-account" />
       ) : null}
       {!src && initials ? (
-        <AvatarInitials textColor={textColor} avatarSize={avatarSize} initials={initials} />
+        <AvatarInitials textColor={textColor} avatarSize={avatarSize} initials={customInitials ? customInitials : initials} />
       ) : null}
       {title ? <ScreenReaderContent>{title}</ScreenReaderContent> : null}
     </Image>
@@ -211,7 +206,8 @@ Avatar.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object,
   showTitleOnHover: PropTypes.bool,
-  tooltipPosition: PropTypes.oneOf(["top", "top-left", "top-right", "bottom", "bottom-left", "bottom-right"]),
+  tooltipPosition: PropTypes.oneOf(["top-center", "top-left", "top-right", "bottom-center", "bottom-left", "bottom-right"]),
+  customInitials: PropTypes.string,
 };
 
 Avatar.defaultProps = {
@@ -224,7 +220,8 @@ Avatar.defaultProps = {
   className: undefined,
   style: undefined,
   showTitleOnHover: false,
-  tooltipPosition: "top",
+  tooltipPosition: "top-center",
+  customInitials: undefined,
 };
 
 export default Avatar;

@@ -5,15 +5,13 @@ import Spinner from "../components/Spinner";
 
 <Meta title="Avatar" component={Avatar} />
 
-export const Template = (args) => <Avatar {...args} style={{ margin: '32px auto 0' }} />;
+export const Template = (args) => <Avatar {...args} />;
 const lorem =
   "Proin eget tortor risus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque.";
 
 # 📢 Avatar
 
-`Avatar` is a component for rendering a user avatar. To represent a user from a collaborating company, use the `color` prop to create a color border around the Avatar.
-
-Avatar sizes are mapped to the `size_avatar` set of design tokens. However, you can also set the size as a number if one of the tokens doesn't work.
+`Avatar` is a component for rendering a user avatar.
 
 ## Usage
 
@@ -30,6 +28,7 @@ import Avatar from 'components/shared/DesignSystem/SlabTransferPortal/Avatar';
     name="default"
     args={{
       title: "Jean-Ralphio Saperstein",
+      style: {"margin": '32px auto'}
     }}
   >
     {Template.bind({})}
@@ -38,239 +37,197 @@ import Avatar from 'components/shared/DesignSystem/SlabTransferPortal/Avatar';
 
 <ArgsTable story="default" />
 
-## color / size
+## Title / Image / Initials
 
-Setting the `color` prop changes the color scheme of the Notice and adds a default icon. The icon can be changed via the `iconName` prop.
+The content that displays inside `Avatar` is based on a priority/fallback system.
+1. If a `src` exists (i.e. the user's profile photo), then the image will display.
+1. If there is no `src`, `Avatar` will attempt to get initials automatically based off the `title` prop (likely the user's name). A max of 3 initials will be displayed. Alternatively, you can override the default initials behavior and set your own initials manually using the `CustomInitials` prop.
+1. If there is no `src`, `title`, and `CustomInitials` (i.e. a newly invited user who hasn't finished setting up their account), we'll display a fallback generic user icon.
 
 <Canvas>
   <Story
-    name="info small"
+    name="with profile photo"
     args={{
-      children: lorem,
-      size: "small",
-      color: "info",
+      title: "Jean-Ralphio Saperstein",
+      src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
     }}
   >
     {Template.bind({})}
   </Story>
   <Story
-    name="success small"
+    name="custom initials"
     args={{
-      children: lorem,
-      size: "small",
-      color: "success",
+      title: "Jean-Ralphio Saperstein",
+      customInitials: "XX"
     }}
   >
     {Template.bind({})}
   </Story>
   <Story
-    name="caution small"
+    name="no photo"
     args={{
-      children: lorem,
-      size: "small",
-      color: "caution",
+      title: "Jean-Ralphio Saperstein",
     }}
   >
     {Template.bind({})}
   </Story>
   <Story
-    name="destroy small"
+    name="blank"
     args={{
-      children: lorem,
-      size: "small",
-      color: "destroy",
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="upgrade small"
-    args={{
-      children: lorem,
-      size: "small",
-      color: "upgrade",
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="info medium"
-    args={{
-      children: lorem,
-      size: "medium",
-      color: "info",
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="success medium"
-    args={{
-      children: lorem,
-      size: "medium",
-      color: "success",
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="caution medium"
-    args={{
-      children: lorem,
-      size: "medium",
-      color: "caution",
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="destroy medium"
-    args={{
-      children: lorem,
-      size: "medium",
-      color: "destroy",
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="upgrade medium"
-    args={{
-      children: lorem,
-      size: "medium",
-      color: "upgrade",
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="info large"
-    args={{
-      children: lorem,
-      size: "large",
-      color: "info",
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="success large"
-    args={{
-      children: lorem,
-      size: "large",
-      color: "success",
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="caution large"
-    args={{
-      children: lorem,
-      size: "large",
-      color: "caution",
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="destroy large"
-    args={{
-      children: lorem,
-      size: "large",
-      color: "destroy",
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="upgrade large"
-    args={{
-      children: lorem,
-      size: "large",
-      color: "upgrade",
     }}
   >
     {Template.bind({})}
   </Story>
 </Canvas>
 
-## contentAfter
+## Sizes
+Avatar sizes are mapped to the `size_avatar` set of design tokens. However, you can also set the size as a number if one of the tokens doesn't work.
 
 <Canvas>
   <Story
-    name="contentAfter"
+    name="large"
     args={{
-      children: "Upgrade to Premium to share Checklists with Collaborators",
-      color: "upgrade",
-      contentAfter: (
-        <Button outline color="secondary" size="small">
-          Upgrade Plan
-        </Button>
-      ),
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-</Canvas>
-
-## contentBefore
-
-If `contentBefore` is supplied, it will replace the Notice's icon.
-
-<Canvas>
-  <Story
-    name="contentBefore"
-    args={{
-      children: "We are processing your Photos. Sit tight!",
-      contentBefore: (
-        <Spinner
-          size="small"
-          trackColor="var(--cc_color_border_default)"
-          meterColor="var(--cc_color_text_subtle)"
-        />
-      ),
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-</Canvas>
-
-## contentAlign
-
-Use `contentAlign="top"` for longer content (a headline and a paragraph, for example).
-
-<Canvas>
-  <Story
-    name="contentAlign"
-    args={{
-      children: (
-        <div>
-          <h3 style={{ marginTop: 0, marginBottom: 8 }}>Some Headline</h3>
-          <p style={{ margin: 0 }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-            hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus
-            rhoncus pulvinar aliquam.
-          </p>
-        </div>
-      ),
-      contentAlign: "top",
+      title: "Jean-Ralphio Saperstein",
       size: "large",
     }}
   >
     {Template.bind({})}
   </Story>
+  <Story
+    name="medium"
+    args={{
+      title: "Jean-Ralphio Saperstein",
+      size: "medium"
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="small"
+    args={{
+      title: "Jean-Ralphio Saperstein",
+      size: "small"
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="custom size"
+    args={{
+      title: "Jean-Ralphio Saperstein",
+      size: 64,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
 </Canvas>
 
-## hideIcon
+## Colors
+Avatars will have a default background color of `var(--cc_color_background_3)` and text color of `var(--cc_color_text_subtle)`, but you can override those with the `backgroundColor` and `textColor` props. For example, you might be rendering Avatars inside a container that already has a level 3 background color, in which case you could add a `backgroundColor` prop of `var(--cc_color_background_1)`.
+
+To represent a user from a collaborating company, use the `color` prop to create a color border around the Avatar.
 
 <Canvas>
   <Story
-    name="hideIcon"
+    name="custom background color"
     args={{
-      children: "Sometimes, you just don't want an icon. That's cool, too.",
-      color: "caution",
-      hideIcon: true,
+      title: "Jean-Ralphio Saperstein",
+      backgroundColor: "var(--cc_color_background_1)",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="custom text color"
+    args={{
+      title: "Jean-Ralphio Saperstein",
+      textColor: "var(--cc_color_utility_success)",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="collaborator"
+    args={{
+      title: "Jean-Ralphio Saperstein",
+      color: "var(--cc_color_label_orange)",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Tooltip Hover
+Add the `showTitleOnHover` prop if you want to show a tooltip with the Avatar's `title` inside. You can choose a `tooltipPosition` as well if the default (`top-center`) doesn't work for you.
+
+<Canvas>
+  <Story
+    name="tooltip top-center"
+    args={{
+      title: "Jean-Ralphio Saperstein",
+      src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
+      showTitleOnHover: true,
+      style: {"margin": "16px 0 16px 48px"},
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="tooltip top-left"
+    args={{
+      title: "Jean-Ralphio Saperstein",
+      src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
+      showTitleOnHover: true,
+      tooltipPosition: "top-left",
+      style: {"margin": "16px 0 16px 0"},
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="tooltip top-right"
+    args={{
+      title: "Jean-Ralphio Saperstein",
+      src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
+      showTitleOnHover: true,
+      tooltipPosition: "top-right",
+      style: {"margin": "16px 0 16px 0"},
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="tooltip bottom-center"
+    args={{
+      title: "Jean-Ralphio Saperstein",
+      src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
+      showTitleOnHover: true,
+      tooltipPosition: "bottom-center",
+      style: {"margin": "16px 0 16px 0"},
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="tooltip bottom-left"
+    args={{
+      title: "Jean-Ralphio Saperstein",
+      src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
+      showTitleOnHover: true,
+      tooltipPosition: "bottom-left",
+      style: {"margin": "16px 0 16px 0"},
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="tooltip bottom-right"
+    args={{
+      title: "Jean-Ralphio Saperstein",
+      src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
+      showTitleOnHover: true,
+      tooltipPosition: "bottom-right",
+      style: {"margin": "16px 0 16px 0"},
     }}
   >
     {Template.bind({})}
