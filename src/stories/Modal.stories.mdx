@@ -8,30 +8,28 @@ import { useState } from "react";
 
 export const Template = (args) => {
   const [isOpen, setIsOpen] = useState(false);
+  const handleToggle = () => {
+    setIsOpen((prevIsOpen) => !prevIsOpen);
+  };
   return (
     <>
-      <Button
-        onClick={() => {
-          setIsOpen(true);
-          console.log("primary pressed");
-        }}
-        color="primary"
-        hideIcon
-      >
+      <Button onClick={handleToggle} color="primary" hideIcon>
         Open Modal
       </Button>
-      <Modal isOpen={isOpen} {...args}>
-        Gsadadgsadd
-        <Button
-          onClick={() => {
-            setIsOpen(false);
-            console.log("close pressed");
+      <Modal onRequestClose={handleToggle} isOpen={isOpen} {...args}>
+        <div
+          style={{
+            alignItems: "start",
+            gap: 16,
+            display: "flex",
+            flexDirection: "column",
           }}
-          color="primary"
-          hideIcon
         >
-          Close Modal
-        </Button>
+          This is modal content.
+          <Button onClick={handleToggle} color="primary" hideIcon>
+            Close Modal
+          </Button>
+        </div>
       </Modal>
     </>
   );
@@ -82,11 +80,15 @@ import Modal from "components/shared/DesignSystem/SlabTransferPortal/Modal";
 );
 ```
 
+## Default Modal
+
 <Canvas>
   <Story
     name="default"
     args={{
       children: "test",
+      size: "small",
+      primaryAction: { label: "Save", onClick: () => {} },
     }}
   >
     {Template.bind({})}
@@ -94,3 +96,60 @@ import Modal from "components/shared/DesignSystem/SlabTransferPortal/Modal";
 </Canvas>
 
 <ArgsTable story="default" />
+
+## Small Modal
+
+<Canvas>
+  <Story
+    name="Small Modal"
+    args={{
+      children: "Small Content",
+      size: "small",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Medium Modal
+
+<Canvas>
+  <Story
+    name="Medium Modal"
+    args={{
+      children: "Medium Content",
+      size: "medium",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Large Modal
+
+<Canvas>
+  <Story
+    name="Large Modal"
+    args={{
+      children: "Large Content",
+      size: "large",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Footer
+
+<Canvas>
+  <Story
+    name="Footer"
+    args={{
+      children: "Large Content",
+      primaryAction: { label: "Publish", onClick: () => {} },
+      secondaryAction: { label: "Save as Draft", onClick: () => {} },
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
