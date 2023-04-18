@@ -1,0 +1,278 @@
+import { Canvas, Meta, Story, ArgsTable } from "@storybook/addon-docs";
+import Avatar from "../components/Avatar";
+import Button from "../components/Button";
+import Spinner from "../components/Spinner";
+
+<Meta title="Avatar" component={Avatar} />
+
+export const Template = (args) => <Avatar {...args} style={{ margin: '32px auto 0' }} />;
+const lorem =
+  "Proin eget tortor risus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque.";
+
+# 📢 Avatar
+
+`Avatar` is a component for rendering a user avatar. To represent a user from a collaborating company, use the `color` prop to create a color border around the Avatar.
+
+Avatar sizes are mapped to the `size_avatar` set of design tokens. However, you can also set the size as a number if one of the tokens doesn't work.
+
+## Usage
+
+```jsx
+import Avatar from 'components/shared/DesignSystem/SlabTransferPortal/Avatar';
+
+---
+
+<Avatar title="Jean-Ralphio Saperstein" />
+```
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      title: "Jean-Ralphio Saperstein",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## color / size
+
+Setting the `color` prop changes the color scheme of the Notice and adds a default icon. The icon can be changed via the `iconName` prop.
+
+<Canvas>
+  <Story
+    name="info small"
+    args={{
+      children: lorem,
+      size: "small",
+      color: "info",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="success small"
+    args={{
+      children: lorem,
+      size: "small",
+      color: "success",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="caution small"
+    args={{
+      children: lorem,
+      size: "small",
+      color: "caution",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="destroy small"
+    args={{
+      children: lorem,
+      size: "small",
+      color: "destroy",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="upgrade small"
+    args={{
+      children: lorem,
+      size: "small",
+      color: "upgrade",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="info medium"
+    args={{
+      children: lorem,
+      size: "medium",
+      color: "info",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="success medium"
+    args={{
+      children: lorem,
+      size: "medium",
+      color: "success",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="caution medium"
+    args={{
+      children: lorem,
+      size: "medium",
+      color: "caution",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="destroy medium"
+    args={{
+      children: lorem,
+      size: "medium",
+      color: "destroy",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="upgrade medium"
+    args={{
+      children: lorem,
+      size: "medium",
+      color: "upgrade",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="info large"
+    args={{
+      children: lorem,
+      size: "large",
+      color: "info",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="success large"
+    args={{
+      children: lorem,
+      size: "large",
+      color: "success",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="caution large"
+    args={{
+      children: lorem,
+      size: "large",
+      color: "caution",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="destroy large"
+    args={{
+      children: lorem,
+      size: "large",
+      color: "destroy",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="upgrade large"
+    args={{
+      children: lorem,
+      size: "large",
+      color: "upgrade",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## contentAfter
+
+<Canvas>
+  <Story
+    name="contentAfter"
+    args={{
+      children: "Upgrade to Premium to share Checklists with Collaborators",
+      color: "upgrade",
+      contentAfter: (
+        <Button outline color="secondary" size="small">
+          Upgrade Plan
+        </Button>
+      ),
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## contentBefore
+
+If `contentBefore` is supplied, it will replace the Notice's icon.
+
+<Canvas>
+  <Story
+    name="contentBefore"
+    args={{
+      children: "We are processing your Photos. Sit tight!",
+      contentBefore: (
+        <Spinner
+          size="small"
+          trackColor="var(--cc_color_border_default)"
+          meterColor="var(--cc_color_text_subtle)"
+        />
+      ),
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## contentAlign
+
+Use `contentAlign="top"` for longer content (a headline and a paragraph, for example).
+
+<Canvas>
+  <Story
+    name="contentAlign"
+    args={{
+      children: (
+        <div>
+          <h3 style={{ marginTop: 0, marginBottom: 8 }}>Some Headline</h3>
+          <p style={{ margin: 0 }}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
+            hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus
+            rhoncus pulvinar aliquam.
+          </p>
+        </div>
+      ),
+      contentAlign: "top",
+      size: "large",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## hideIcon
+
+<Canvas>
+  <Story
+    name="hideIcon"
+    args={{
+      children: "Sometimes, you just don't want an icon. That's cool, too.",
+      color: "caution",
+      hideIcon: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
