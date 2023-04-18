@@ -1,6 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled, { css, keyframes } from 'styled-components';
+import React from "react";
+import PropTypes from "prop-types";
+import styled, { css, keyframes } from "styled-components";
+
+import Text from "../Text";
+import Button from "../Button";
 
 const marginSpacingStyle = `
   margin: var(--cc_size_spacing_s) 0;
@@ -40,16 +43,8 @@ const Icon = styled.i`
         `
       : null}
 `;
-const Title = styled.h2`
-  ${marginSpacingStyle}
-`;
-const Message = styled.p`
-  ${marginSpacingStyle}
-  line-height: 1.5;
-  font-size: var(--cc_size_text_m);
-  color: var(--cc_color_text_subtle);
-`;
-const Button = styled.button`
+
+const StyledButton = styled(Button)`
   margin-block-start: var(--cc_size_spacing_m);
 `;
 
@@ -71,11 +66,17 @@ const ModalAlert = ({
           iconAnimatesIn={iconAnimatesIn}
         />
       ) : null}
-      {title ? <Title>{title}</Title> : null}
-      {message ? <Message>{message}</Message> : null}
-      <Button type="button" className="ccb-light-gray" onClick={actionOnClick}>
-        {actionLabel}
-      </Button>
+      {title ? <Text ccMargin="s none s">{title}</Text> : null}
+      {message ? (
+        <Text size="m" color="subtle">
+          {message}
+        </Text>
+      ) : null}
+      {actionLabel ? (
+        <StyledButton color="subtle" onClick={actionOnClick}>
+          {actionLabel}
+        </StyledButton>
+      ) : null}
     </Container>
   );
 };
@@ -83,7 +84,7 @@ const ModalAlert = ({
 ModalAlert.propTypes = {
   iconName: PropTypes.string,
   iconAnimatesIn: PropTypes.bool,
-  color: PropTypes.oneOf(['info', 'success', 'caution', 'destroy']),
+  color: PropTypes.oneOf(["info", "success", "caution", "destroy"]),
   title: PropTypes.string,
   message: PropTypes.node,
   actionLabel: PropTypes.string,
@@ -91,9 +92,9 @@ ModalAlert.propTypes = {
 };
 
 ModalAlert.defaultProps = {
-  iconName: 'alert-circle',
+  iconName: "alert-circle",
   iconAnimatesIn: false,
-  color: 'destroy',
+  color: "destroy",
   title: undefined,
   message: undefined,
   actionLabel: undefined,
