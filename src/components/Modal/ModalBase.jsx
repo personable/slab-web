@@ -2,11 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import ReactModal from "react-modal";
+
 import * as tokens from "../shared/tokens.js";
 import ButtonIcon from "../ButtonIcon";
+import ScreenReaderContent from "../ScreenReaderContent";
 import "./modal.styles.css";
 
-import ScreenReaderContent from "../ScreenReaderContent";
 // import ModalToast from "../ModalToast/ModalToast";
 // import { useModalToast } from "../ModalToast/useModalToast";
 
@@ -78,7 +79,7 @@ const ModalBase = ({
   return (
     <StyledReactModal
       // how long should the modal hang around before it unmounts
-      // coordinate with longest transition in .modal-base {} in _modal.scss
+      // coordinate with longest transition in .modal-base {} in modal.styles.css
       closeTimeoutMS={300}
       isOpen={isOpen}
       ariaHideApp={false}
