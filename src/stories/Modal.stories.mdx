@@ -16,21 +16,7 @@ export const Template = (args) => {
       <Button onClick={handleToggle} color="primary" hideIcon>
         Open Modal
       </Button>
-      <Modal onRequestClose={handleToggle} isOpen={isOpen} {...args}>
-        <div
-          style={{
-            alignItems: "start",
-            gap: 16,
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          This is modal content.
-          <Button onClick={handleToggle} color="primary" hideIcon>
-            Close Modal
-          </Button>
-        </div>
-      </Modal>
+      <Modal {...args} onRequestClose={handleToggle} isOpen={isOpen} />
     </>
   );
 };
@@ -97,11 +83,11 @@ import Modal from "components/shared/DesignSystem/SlabTransferPortal/Modal";
 
 <ArgsTable story="default" />
 
-## Small Modal
+## Small
 
 <Canvas>
   <Story
-    name="Small Modal"
+    name="Small"
     args={{
       children: "Small Content",
       size: "small",
@@ -111,11 +97,11 @@ import Modal from "components/shared/DesignSystem/SlabTransferPortal/Modal";
   </Story>
 </Canvas>
 
-## Medium Modal
+## Medium
 
 <Canvas>
   <Story
-    name="Medium Modal"
+    name="Medium"
     args={{
       children: "Medium Content",
       size: "medium",
@@ -125,11 +111,11 @@ import Modal from "components/shared/DesignSystem/SlabTransferPortal/Modal";
   </Story>
 </Canvas>
 
-## Large Modal
+## Large
 
 <Canvas>
   <Story
-    name="Large Modal"
+    name="Large"
     args={{
       children: "Large Content",
       size: "large",
