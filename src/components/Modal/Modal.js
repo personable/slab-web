@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import ModalBase from "./ModalBase";
-import ModalAlert from "./ModalAlert";
+
 import Spinner from "../Spinner";
 import Button from "../Button";
+import ModalBase from "./ModalBase";
+import ModalAlert from "./ModalAlert";
 
 const StyledModalBase = styled(ModalBase)`
   border-radius: var(--cc_size_border_radius_xl);
@@ -30,7 +31,7 @@ const CenteredLayout = styled.div`
 const Header = styled.div`
   padding: var(--cc_size_spacing_l)
     ${(props) => (props.showCloseButton ? "60px" : "var(--cc_size_spacing_l)")}
-    var(--cc_size_spacing_m) var(--cc_size_spacing_xl);
+    var(--cc_size_spacing_l) var(--cc_size_spacing_xl);
   border-block-end: var(--cc_size_border_width_s) solid
     var(--cc_color_border_default);
 `;
@@ -41,7 +42,9 @@ const Title = styled.h2`
   font-weight: 700;
 `;
 const Body = styled.div`
-  padding: var(--cc_size_spacing_l) var(--cc_size_spacing_xl);
+  padding: ${(props) =>
+      props.hideHeaderBorder ? 0 : "var(--cc_size_spacing_l)"}
+    var(--cc_size_spacing_xl) var(--cc_size_spacing_l);
   overflow-y: auto;
 `;
 const Footer = styled.div`
@@ -83,8 +86,8 @@ const Modal = ({
   style,
   className,
   closeButtonStyle,
+  hideHeaderBorder,
   headerStyle,
-  hideHeaderUnderline,
   bodyStyle,
   footerStyle,
 }) => {
@@ -173,19 +176,24 @@ const Modal = ({
       );
     }
 
-    let headerStyle = undefined;
-    if (hideHeaderUnderline) {
-      headerStyle = { borderBottom: 0 };
-    }
     return (
       <>
         {title ? (
-          <Header showCloseButton={showCloseButton} style={headerStyle}>
+          <Header
+            showCloseButton={showCloseButton}
+            style={
+              hideHeaderBorder
+                ? (headerStyle = { borderBottom: 0 })
+                : headerStyle
+            }
+          >
             {renderTitle(title)}
           </Header>
         ) : null}
 
-        <Body style={bodyStyle}>{children}</Body>
+        <Body hideHeaderBorder={hideHeaderBorder} style={bodyStyle}>
+          {children}
+        </Body>
 
         {shouldRenderFooter ? (
           <Footer style={footerStyle}>
@@ -327,7 +335,7 @@ Modal.propTypes = {
   headerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   bodyStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   footerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  hideHeaderUnderline: PropTypes.bool,
+  hideHeaderBorder: PropTypes.bool,
 };
 
 Modal.defaultProps = {
@@ -377,7 +385,7 @@ Modal.defaultProps = {
   headerStyle: {},
   bodyStyle: {},
   footerStyle: {},
-  hideHeaderUnderline: false,
+  hideHeaderBorder: false,
 };
 
 export default Modal;
