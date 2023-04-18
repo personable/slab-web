@@ -229,7 +229,7 @@ const Modal = ({
 
 Modal.propTypes = {
   /**
-   * children render in modal body
+   * Children render in modal body
    */
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
@@ -237,39 +237,39 @@ Modal.propTypes = {
     PropTypes.func,
   ]).isRequired,
   /**
-   * state to open and close modal
+   * State to open and close modal
    */
   isOpen: PropTypes.bool,
   /**
-   * callback that triggers when closing the modal is requested
+   * Callback that triggers when closing the modal is requested
    */
   onRequestClose: PropTypes.func,
   /**
-   * state to open/close modal
+   * Renders close button in header
    */
   showCloseButton: PropTypes.bool,
   /**
-   * close button visibility
+   * Closes the modal on overlay click
    */
   shouldCloseOnOverlayClick: PropTypes.bool,
   /**
-   * does the modal animate in
+   * Animates the modal on mount/unmount
    */
   shouldAnimateIn: PropTypes.bool,
   /**
-   * modal title
+   * Adds a title to the header
    */
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   /**
-   * sets aria-label attribute for screen readers
+   * Sets aria-label attribute for screen readers
    */
   label: PropTypes.string,
   /**
-   * modal size
+   * Size of the modal
    */
   size: PropTypes.oneOf(["small", "medium", "large"]),
   /**
-   * set `isVisible` to show alert state to inform user of error/warning etc.; customize `iconName`, `title`, `message`
+   * Set `isVisible` to show alert state to inform user of error/warning etc.; customize `iconName`, `title`, `message`
    */
   alert: PropTypes.shape({
     isVisible: PropTypes.bool,
@@ -283,14 +283,14 @@ Modal.propTypes = {
   }),
 
   /**
-   * set `isVisible` to show loading state; customize text with `message`
+   * Set `isVisible` to show loading state; customize text with `message`
    */
   loading: PropTypes.shape({
     isVisible: PropTypes.bool,
     message: PropTypes.node,
   }),
   /**
-   * `label` and `onClick` for a primary action
+   * Setting 'label' and 'onClick' renders a primary button in footer
    */
   primaryAction: PropTypes.shape({
     isDelete: PropTypes.bool,
@@ -305,7 +305,7 @@ Modal.propTypes = {
     "data-testid": PropTypes.string,
   }),
   /**
-   * `label` and `onClick` for a secondary action
+   * Setting 'label' and 'onClick' renders a subtle button in footer
    */
   secondaryAction: PropTypes.shape({
     label: PropTypes.string,
@@ -319,23 +319,37 @@ Modal.propTypes = {
     "data-testid": PropTypes.string,
   }),
   /**
-   * content for footer before primary and secondary actions
+   * Content for footer before primary and secondary actions
    */
   footerContentBefore: PropTypes.node,
   /**
-   * styled-components need className
+   * Needed to make a styled-component
    */
   className: PropTypes.string,
-
   /**
-   * override the default styles if needed
+   * Override the default styles if needed
    */
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  /**
+   * Override the default style of the close button
+   */
   closeButtonStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  /**
+   * Override the default style of the header
+   */
   headerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  bodyStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  footerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  /**
+   * Hides the bottom border of the header
+   */
   hideHeaderBorder: PropTypes.bool,
+  /**
+   * Override the default style of the body
+   */
+  bodyStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  /**
+   * Override the default style of the footer
+   */
+  footerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
 
 Modal.defaultProps = {
