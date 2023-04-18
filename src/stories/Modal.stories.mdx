@@ -58,28 +58,36 @@ import Modal from "components/shared/DesignSystem/SlabTransferPortal/Modal";
     args={{
       title: "Add Photos",
       children: (
-        <div
-          style={{
-            borderWidth: "1.5px",
-            borderColor: "#0967d2",
-            borderStyle: "dashed",
-            borderRadius: 8,
-            height: "200px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            textAlign: "center",
-          }}
-        >
-          <Text size="m" as="h1" color="subtle">
-            Drag & drop photos here or click to upload to this project.
-          </Text>
-        </div>
+        <>
+          <div
+            style={{
+              borderWidth: "1.5px",
+              borderColor: "#0967d2",
+              borderStyle: "dashed",
+              borderRadius: 8,
+              height: "200px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              textAlign: "center",
+            }}
+          >
+            <Text size="m" as="h1" color="subtle">
+              Drag & drop photos here or click to upload to this project.
+            </Text>
+          </div>
+          <div style={{ marginTop: 32 }}>
+            <Text size="xs" as="p" color="subtle">
+              By uploading this Content, you represent that you have the rights
+              and authority to share all information in the Content with
+              CompanyCam, including any Personal Information belonging to you or
+              a third party. See full Terms of Use.
+            </Text>
+          </div>
+        </>
       ),
       hideHeaderBorder: true,
       size: "small",
-      primaryAction: { label: "Save", onClick: () => {} },
-      secondaryAction: { label: "Cancel", onClick: () => {} },
     }}
   >
     {Template.bind({})}
