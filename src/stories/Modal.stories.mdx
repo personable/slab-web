@@ -8,15 +8,15 @@ import { useState } from "react";
 
 export const Template = (args) => {
   const [isOpen, setIsOpen] = useState(false);
-  const handleToggle = () => {
+  const toggleModal = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
   };
   return (
     <>
-      <Button onClick={handleToggle} color="primary" hideIcon>
+      <Button onClick={toggleModal} color="primary" hideIcon>
         Open Modal
       </Button>
-      <Modal {...args} onRequestClose={handleToggle} isOpen={isOpen} />
+      <Modal {...args} onRequestClose={toggleModal} isOpen={isOpen} />
     </>
   );
 };
@@ -49,15 +49,18 @@ import Modal from "components/shared/DesignSystem/SlabTransferPortal/Modal";
 );
 ```
 
-## Default Modal
+## Bells and Whistles
 
 <Canvas>
   <Story
     name="default"
     args={{
+      title: "Modal",
       children: "test",
+      hideHeaderUnderline: true,
       size: "small",
       primaryAction: { label: "Save", onClick: () => {} },
+      secondaryAction: { label: "Cancel", onClick: () => {} },
     }}
   >
     {Template.bind({})}
