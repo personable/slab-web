@@ -182,11 +182,28 @@ The official `Modal` comes with the following out of the box:
 
 ## Loading
 
+To render a loading state, pass `loading={isVisible}` to the Modal.
+
+```jsx
+<Modal
+  isOpen={isOpen}
+  label="Describe modal for screen reader users"
+  onRequestClose={handleClose}
+  loading={{isVisible, message: "Well this is taking longer than expected.}}
+>
+  This is where regular modal content goes.
+</Modal>
+);
+```
+
 <Canvas>
   <Story
     name="Loading"
     args={{
-      loading: { isVisible: true },
+      loading: {
+        isVisible: true,
+        message: "Well this is taking longer than expected.",
+      },
     }}
   >
     {Template.bind({})}
@@ -198,21 +215,20 @@ The official `Modal` comes with the following out of the box:
 To render an alert, pass `alert={{isVisible}}` to the Modal. The alert will overlay the original Modal content.
 
 ```jsx
-
-  <Modal
-    isOpen={isOpen}
-    label="Describe modal for screen reader users"
-    onRequestClose={handleClose}
-    alert={{
-      isVisible,
-      title: "Something went wrong.",
-      message: "Hit the Try Again button to refresh the list.",
-      actionLabel: "Try Again",
-      actionOnClick: () => {},
-    }}
-  >
-    This is where regular modal content goes.
-  </Modal>
+<Modal
+  isOpen={isOpen}
+  label="Describe modal for screen reader users"
+  onRequestClose={handleClose}
+  alert={{
+    isVisible,
+    title: "Something went wrong.",
+    message: "Hit the button below to load the list again.",
+    actionLabel: "Try Again",
+    actionOnClick: () => {},
+  }}
+>
+  This is where regular modal content goes.
+</Modal>
 );
 ```
 
@@ -233,9 +249,10 @@ To render an alert, pass `alert={{isVisible}}` to the Modal. The alert will over
       ),
       alert: {
         isVisible: true,
-        title: "Error Loading Content",
-        message: "Something went wrong.",
+        title: "Something went wrong.",
+        message: "Hit the button below to load the list again.",
         actionLabel: "Try Again",
+        actionOnClick: () => {},
       },
     }}
   >
