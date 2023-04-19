@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import React from 'react';
 import PropTypes from 'prop-types';
 import ScreenReaderContent from './shared/ScreenReaderContent';
+import * as tokens from "./shared/tokens.js";
 
 const tooltipPositioning = {
   'top-center': {
@@ -114,10 +115,10 @@ const hintTooltipStyles = css`
 `;
 
 const avatarSizes = {
-  large: 40,
-  medium: 32,
-  small: 24,
-  tiny: 16,
+  large: tokens.size_avatar_l,
+  medium: tokens.size_avatar_m,
+  small: tokens.size_avatar_s,
+  tiny: tokens.size_avatar_xs,
 };
 
 const Image = styled.div`
@@ -243,7 +244,7 @@ Avatar.propTypes = {
 Avatar.defaultProps = {
   title: undefined,
   src: '',
-  size: avatarSizes.medium,
+  size: "medium",
   color: undefined,
   backgroundColor: undefined,
   textColor: undefined,
