@@ -5,10 +5,6 @@ import styled, { css, keyframes } from "styled-components";
 import Text from "../Text";
 import Button from "../Button";
 
-const marginSpacingStyle = `
-  margin: var(--cc_size_spacing_s) 0;
-`;
-
 const iconAnimation = keyframes`
   0% {
     transform: scale(0);
@@ -66,9 +62,13 @@ const ModalAlert = ({
           iconAnimatesIn={iconAnimatesIn}
         />
       ) : null}
-      {title ? <Text ccMargin="s none s">{title}</Text> : null}
+      {title ? (
+        <Text family="heading" size="l" ccMargin="s none s">
+          {title}
+        </Text>
+      ) : null}
       {message ? (
-        <Text size="m" color="subtle">
+        <Text size="m" color="subtle" ccMargin="none none s">
           {message}
         </Text>
       ) : null}
