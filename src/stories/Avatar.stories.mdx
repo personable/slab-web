@@ -9,7 +9,7 @@ export const Template = (args) => <Avatar {...args} />;
 const lorem =
   "Proin eget tortor risus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque.";
 
-# 📢 Avatar
+# 🙂 Avatar
 
 `Avatar` is a component for rendering a user avatar.
 
@@ -41,7 +41,7 @@ import Avatar from 'components/shared/DesignSystem/SlabTransferPortal/Avatar';
 The content that displays inside `Avatar` is based on a priority/fallback system.
 1. If a `src` exists (i.e. the user's profile photo), then the image will display.
 1. If there is no `src`, `Avatar` will attempt to get initials automatically based off the `name` prop (likely the user's name). A max of 3 initials will be displayed. Alternatively, you can override the default initials behavior and set your own initials manually using the `CustomInitials` prop.
-1. If there is no `src`, `name`, and `CustomInitials` (i.e. a newly invited user who hasn't finished setting up their account), we'll display a fallback generic user icon.
+1. If there is no `src`, `name`, or `CustomInitials` (i.e. a newly invited user who hasn't finished setting up their account), we'll display a fallback generic user icon.
 
 <Canvas>
   <Story
