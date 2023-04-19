@@ -53,3 +53,23 @@ body.ReactModal__Body--open {
 .modal-overflow-x-hidden {
   overflow-x: hidden;
 }
+
+/* Scrollbar */
+/* Set the width of the whole scrollbar */
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Handle */
+/* set the color of the scrollbar, the radius of its corners and the width in relation to the width set above*/
+
+::-webkit-scrollbar-thumb {
+  background: rgb(150, 150, 150);
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  border: 6px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+}
