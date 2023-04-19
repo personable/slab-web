@@ -128,7 +128,6 @@ const Image = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 100%;
-  overflow: hidden;
   height: ${(props) => `${props.avatarSize}px`};
   width: ${(props) => `${props.avatarSize}px`};
   line-height: ${(props) => `${props.avatarSize}px`};
@@ -149,6 +148,27 @@ const Initials = styled.div`
   font-family: 'Averta', system-ui, sans-serif;
 `;
 
+const IconBadgeBase = styled.i`
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  display: flex;
+  place-items: center;
+  width: ${(props) => `${props.iconSize}px`};
+  height: ${(props) => `${props.iconSize}px`};
+  padding: ${(props) => `${props.padding}px`};
+  background: var(--cc_color_button_background_secondary);
+  border-radius: 50%;
+  color: white;
+  font-size: ${(props) => `${props.iconSize}px`};
+`;
+
+const IconBadge = ({ avatarSize, iconName }) => {
+  const iconSize = Math.round(avatarSize / 4 + 6);
+  const padding = Math.round(avatarSize / 16);
+  return <IconBadgeBase className={`mdi mdi-${iconName}`} padding={padding} iconSize={iconSize} />
+};
+
 const AvatarInitials = ({ initials, avatarSize }) => {
   const textSize = Math.round(avatarSize / 2.4);
   return <Initials textSize={textSize}>{initials}</Initials>;
@@ -166,6 +186,7 @@ const Avatar = ({
   showTitleOnHover,
   tooltipPosition,
   customInitials,
+  isHomeowner,
 }) => {
   const avatarSize = typeof size === 'number' ? size : avatarSizes[size];
   const initials = title ? title.split(' ').map(x => x.charAt(0)).join('').substr(0, 3).toUpperCase() : null
@@ -185,10 +206,18 @@ const Avatar = ({
       {!src && !initials ? (
         <i className="mdi mdi-account" />
       ) : null}
+
       {!src && initials ? (
         <AvatarInitials textColor={textColor} avatarSize={avatarSize} initials={customInitials ? customInitials : initials} />
       ) : null}
-      {title ? <ScreenReaderContent>{title}</ScreenReaderContent> : null}
+
+      {title ? ( 
+        <ScreenReaderContent>{title}</ScreenReaderContent> 
+      ) : null}
+
+      {isHomeowner ? (
+        <IconBadge avatarSize={avatarSize} iconName="home" />
+      ) : null}
     </Image>
   );
 };
@@ -208,6 +237,7 @@ Avatar.propTypes = {
   showTitleOnHover: PropTypes.bool,
   tooltipPosition: PropTypes.oneOf(["top-center", "top-left", "top-right", "bottom-center", "bottom-left", "bottom-right"]),
   customInitials: PropTypes.string,
+  isHomeowner: PropTypes.bool,
 };
 
 Avatar.defaultProps = {
@@ -222,6 +252,7 @@ Avatar.defaultProps = {
   showTitleOnHover: false,
   tooltipPosition: "top-center",
   customInitials: undefined,
+  isHomeowner: false,
 };
 
 export default Avatar;

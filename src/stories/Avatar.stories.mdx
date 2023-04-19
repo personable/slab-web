@@ -233,3 +233,30 @@ Add the `showTitleOnHover` prop if you want to show a tooltip with the Avatar's 
     {Template.bind({})}
   </Story>
 </Canvas>
+
+
+
+## Icon Badge
+There may be times when we want to append an icon badge to an Avatar. The only example currently is a `isHomeowner` prop which adds a house icon in the top right corner of the Avatar. This is more a proof of concept at the moment and likely won't be used much - this may become more robust in the future.
+
+<Canvas>
+  <Story
+    name="homeowner no photo"
+    args={{
+      title: "Jean-Ralphio Saperstein",
+      isHomeowner: true,
+      style: {"marginRight": "-12px"},
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="regular avatar"
+    args={{
+      title: "Jean-Ralphio Saperstein",
+      style: {"marginRight": "-12px"},
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
