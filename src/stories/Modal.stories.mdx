@@ -5,7 +5,7 @@ import Modal from "../components/Modal/Modal";
 import Text from "../components/Text";
 import Spinner from "../components/Spinner";
 import SampleImage from "./assets/images/user_role_admin.png";
-import AngryBoss from "./assets/images/angryboss.jpg";
+import HotAir from "./assets/images/hot-air.jpg";
 
 <Meta title="Modal" component={Modal} />
 
@@ -138,7 +138,7 @@ The official `Modal` comes with the following out of the box:
 
 <Canvas>
   <Story
-    name="Without Close Button"
+    name="Without close button"
     args={{
       title: "Without Close Button",
       children: "Maybe you have a thing against that close button.",
@@ -150,17 +150,17 @@ The official `Modal` comes with the following out of the box:
   </Story>
 </Canvas>
 
-## Without Overlay Close
+## Without Overlay Click
+
+Passing `shouldCloseOnOverlayClick={false}` disables closing the modal on overlay click, if that feels risky to you.
 
 <Canvas>
   <Story
-    name="Without Overlay Close"
+    name="Without overlay click"
     args={{
-      title: "Without Overlay Close",
+      title: "Hit the close button instead...",
       children: "Maybe clicking on the overlay feels risky.",
-      primaryAction: { label: "Save", onClick: () => {} },
-      secondaryAction: { label: "Cancel", onClick: () => {} },
-      showCloseButton: false,
+      shouldCloseOnOverlayClick: false,
     }}
   >
     {Template.bind({})}
@@ -187,29 +187,27 @@ Sometimes you wanna swim upstream. It's okay, there are style overrides for that
   <Story
     name="Custom Stylez"
     args={{
+      style: {
+        padding: 0,
+        backgroundColor: "#0068DB",
+      },
       closeButtonStyle: { opacity: 0.5, color: "#fff" },
       children: (
         <>
           <div
             style={{
               display: "flex",
+              flexDirection: "column",
               alignItems: "center",
-              justifyContent: "center",
-              padding: "56px 40px",
-              gap: 40,
+              justifyContent: "between",
+              paddingTop: 40,
+              textAlign: "center",
             }}
           >
-            <img
-              src={AngryBoss}
-              alt="boss sample image"
-              width="50%"
-              style={{ position: "relative" }}
-            />
             <div
               style={{
                 display: "flex",
                 flexDirection: "column",
-                width: "50%",
                 color: "#fff",
               }}
             >
@@ -231,12 +229,18 @@ Sometimes you wanna swim upstream. It's okay, there are style overrides for that
                 </Button>
               </div>
             </div>
+            <img
+              src={HotAir}
+              alt="custom style sample image"
+              width="100%"
+              style={{ position: "relative" }}
+            />
           </div>
         </>
       ),
       bodyStyle: {
         padding: 0,
-        backgroundColor: "#CC2701",
+        backgroundColor: "#0068DB",
       },
     }}
   >
