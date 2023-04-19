@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled, { keyframes } from "styled-components";
+import * as tokens from "./shared/tokens.js";
 
 import { avatarSizes } from "./shared/styles";
 
@@ -28,7 +29,9 @@ const SpinnerLabel = styled.span`
   font-size: ${(props) => props.labelFontSize}px;
   color: var(--cc_color_text_subtle);
   margin-${(props) =>
-    props.layout === "vertical" ? "block-start" : "inline-start"}: 12px;
+    props.layout === "vertical"
+      ? "block-start"
+      : "inline-start"}: var(--cc_size_spacing_l);
 `;
 
 const SpinnerContainer = styled.span`
