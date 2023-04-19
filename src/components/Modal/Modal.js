@@ -28,6 +28,19 @@ const CenteredLayout = styled.div`
   justify-content: center;
   overflow-y: auto;
 `;
+
+const AbsoluteLayout = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  background-color: var(--cc_color_background_1);
+  border-radius: var(--cc_size_border_radius_xl);
+`;
+
 const Header = styled.div`
   padding: var(--cc_size_spacing_l)
     ${(props) => (props.showCloseButton ? "60px" : "var(--cc_size_spacing_l)")}
@@ -154,17 +167,10 @@ const Modal = ({
     );
   };
 
-  const renderModalContent = () => {
-    if (loading.isVisible) {
-      return (
-        <CenteredLayout>
-          <Spinner label={loading.message} layout="vertical" size="large" />
-        </CenteredLayout>
-      );
-    }
+  const renderAlert = () => {
     if (alert.isVisible) {
       return (
-        <CenteredLayout>
+        <AbsoluteLayout>
           <ModalAlert
             iconName={alert.iconName}
             iconAnimatesIn={alert.iconAnimatesIn}
@@ -174,12 +180,23 @@ const Modal = ({
             actionLabel={alert.actionLabel}
             actionOnClick={alert.actionOnClick}
           />
+        </AbsoluteLayout>
+      );
+    } else return null;
+  };
+
+  const renderModalContent = () => {
+    if (loading.isVisible) {
+      return (
+        <CenteredLayout>
+          <Spinner label={loading.message} layout="vertical" size="large" />
         </CenteredLayout>
       );
     }
 
     return (
       <>
+        {renderAlert(alert)}
         {title ? (
           <Header
             showCloseButton={showCloseButton}
