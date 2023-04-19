@@ -20,14 +20,14 @@ import Avatar from 'components/shared/DesignSystem/SlabTransferPortal/Avatar';
 
 ---
 
-<Avatar title="Jean-Ralphio Saperstein" />
+<Avatar name="Jean-Ralphio Saperstein" />
 ```
 
 <Canvas>
   <Story
     name="default"
     args={{
-      title: "Jean-Ralphio Saperstein",
+      name: "Jean-Ralphio Saperstein",
     }}
   >
     {Template.bind({})}
@@ -36,18 +36,18 @@ import Avatar from 'components/shared/DesignSystem/SlabTransferPortal/Avatar';
 
 <ArgsTable story="default" />
 
-## Title / Image / Initials
+## Name / Image / Initials
 
 The content that displays inside `Avatar` is based on a priority/fallback system.
 1. If a `src` exists (i.e. the user's profile photo), then the image will display.
-1. If there is no `src`, `Avatar` will attempt to get initials automatically based off the `title` prop (likely the user's name). A max of 3 initials will be displayed. Alternatively, you can override the default initials behavior and set your own initials manually using the `CustomInitials` prop.
-1. If there is no `src`, `title`, and `CustomInitials` (i.e. a newly invited user who hasn't finished setting up their account), we'll display a fallback generic user icon.
+1. If there is no `src`, `Avatar` will attempt to get initials automatically based off the `name` prop (likely the user's name). A max of 3 initials will be displayed. Alternatively, you can override the default initials behavior and set your own initials manually using the `CustomInitials` prop.
+1. If there is no `src`, `name`, and `CustomInitials` (i.e. a newly invited user who hasn't finished setting up their account), we'll display a fallback generic user icon.
 
 <Canvas>
   <Story
     name="with profile photo"
     args={{
-      title: "Jean-Ralphio Saperstein",
+      name: "Jean-Ralphio Saperstein",
       src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
     }}
   >
@@ -56,7 +56,7 @@ The content that displays inside `Avatar` is based on a priority/fallback system
   <Story
     name="custom initials"
     args={{
-      title: "Jean-Ralphio Saperstein",
+      name: "Jean-Ralphio Saperstein",
       customInitials: "XX"
     }}
   >
@@ -65,7 +65,7 @@ The content that displays inside `Avatar` is based on a priority/fallback system
   <Story
     name="no photo"
     args={{
-      title: "Jean-Ralphio Saperstein",
+      name: "Jean-Ralphio Saperstein",
     }}
   >
     {Template.bind({})}
@@ -86,7 +86,7 @@ Avatar sizes are mapped to the `size_avatar` set of design tokens. However, you 
   <Story
     name="large"
     args={{
-      title: "Jean-Ralphio Saperstein",
+      name: "Jean-Ralphio Saperstein",
       size: "large",
     }}
   >
@@ -95,7 +95,7 @@ Avatar sizes are mapped to the `size_avatar` set of design tokens. However, you 
   <Story
     name="medium"
     args={{
-      title: "Jean-Ralphio Saperstein",
+      name: "Jean-Ralphio Saperstein",
       size: "medium"
     }}
   >
@@ -104,7 +104,7 @@ Avatar sizes are mapped to the `size_avatar` set of design tokens. However, you 
   <Story
     name="small"
     args={{
-      title: "Jean-Ralphio Saperstein",
+      name: "Jean-Ralphio Saperstein",
       size: "small"
     }}
   >
@@ -113,7 +113,7 @@ Avatar sizes are mapped to the `size_avatar` set of design tokens. However, you 
   <Story
     name="custom size"
     args={{
-      title: "Jean-Ralphio Saperstein",
+      name: "Jean-Ralphio Saperstein",
       size: 64,
     }}
   >
@@ -130,7 +130,7 @@ To represent a user from a collaborating company, use the `color` prop to create
   <Story
     name="custom background color"
     args={{
-      title: "Jean-Ralphio Saperstein",
+      name: "Jean-Ralphio Saperstein",
       backgroundColor: "var(--cc_color_background_1)",
     }}
   >
@@ -139,7 +139,7 @@ To represent a user from a collaborating company, use the `color` prop to create
   <Story
     name="custom text color"
     args={{
-      title: "Jean-Ralphio Saperstein",
+      name: "Jean-Ralphio Saperstein",
       textColor: "var(--cc_color_utility_success)",
     }}
   >
@@ -148,7 +148,7 @@ To represent a user from a collaborating company, use the `color` prop to create
   <Story
     name="collaborator"
     args={{
-      title: "Jean-Ralphio Saperstein",
+      name: "Jean-Ralphio Saperstein",
       color: "var(--cc_color_label_orange)",
     }}
   >
@@ -157,15 +157,16 @@ To represent a user from a collaborating company, use the `color` prop to create
 </Canvas>
 
 ## Tooltip Hover
-Add the `showTitleOnHover` prop if you want to show a tooltip with the Avatar's `title` inside. You can choose a `tooltipPosition` as well if the default (`top-center`) doesn't work for you.
+Add the `showNameOnHover` prop if you want to show a tooltip with the Avatar's `name` inside. You can choose a `tooltipPosition` as well if the default (`top-center`) doesn't work for you.
 
 <Canvas>
   <Story
     name="tooltip top-center"
     args={{
-      title: "Jean-Ralphio Saperstein",
+      name: "Jean-Ralphio Saperstein",
       src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
-      showTitleOnHover: true,
+      showNameOnHover: true,
+      style: {"margin": "32px -32px 32px 64px"}
     }}
   >
     {Template.bind({})}
@@ -173,10 +174,11 @@ Add the `showTitleOnHover` prop if you want to show a tooltip with the Avatar's 
   <Story
     name="tooltip top-left"
     args={{
-      title: "Jean-Ralphio Saperstein",
+      name: "Jean-Ralphio Saperstein",
       src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
-      showTitleOnHover: true,
+      showNameOnHover: true,
       tooltipPosition: "top-left",
+      style: {"margin": "32px -32px 32px 64px"}
     }}
   >
     {Template.bind({})}
@@ -184,10 +186,11 @@ Add the `showTitleOnHover` prop if you want to show a tooltip with the Avatar's 
   <Story
     name="tooltip top-right"
     args={{
-      title: "Jean-Ralphio Saperstein",
+      name: "Jean-Ralphio Saperstein",
       src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
-      showTitleOnHover: true,
+      showNameOnHover: true,
       tooltipPosition: "top-right",
+      style: {"margin": "32px -32px 32px 64px"}
     }}
   >
     {Template.bind({})}
@@ -195,10 +198,11 @@ Add the `showTitleOnHover` prop if you want to show a tooltip with the Avatar's 
   <Story
     name="tooltip bottom-center"
     args={{
-      title: "Jean-Ralphio Saperstein",
+      name: "Jean-Ralphio Saperstein",
       src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
-      showTitleOnHover: true,
+      showNameOnHover: true,
       tooltipPosition: "bottom-center",
+      style: {"margin": "32px -32px 32px 64px"}
     }}
   >
     {Template.bind({})}
@@ -206,10 +210,11 @@ Add the `showTitleOnHover` prop if you want to show a tooltip with the Avatar's 
   <Story
     name="tooltip bottom-left"
     args={{
-      title: "Jean-Ralphio Saperstein",
+      name: "Jean-Ralphio Saperstein",
       src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
-      showTitleOnHover: true,
+      showNameOnHover: true,
       tooltipPosition: "bottom-left",
+      style: {"margin": "32px -32px 32px 64px"}
     }}
   >
     {Template.bind({})}
@@ -217,10 +222,11 @@ Add the `showTitleOnHover` prop if you want to show a tooltip with the Avatar's 
   <Story
     name="tooltip bottom-right"
     args={{
-      title: "Jean-Ralphio Saperstein",
+      name: "Jean-Ralphio Saperstein",
       src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
-      showTitleOnHover: true,
+      showNameOnHover: true,
       tooltipPosition: "bottom-right",
+      style: {"margin": "32px -32px 32px 64px"}
     }}
   >
     {Template.bind({})}
@@ -236,7 +242,7 @@ There may be times when we want to append an icon badge to an Avatar. The only e
   <Story
     name="homeowner no photo"
     args={{
-      title: "Jean-Ralphio Saperstein",
+      name: "Jean-Ralphio Saperstein",
       isHomeowner: true,
     }}
   >
