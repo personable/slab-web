@@ -5,6 +5,7 @@ import Modal from "../components/Modal/Modal";
 import Text from "../components/Text";
 import Spinner from "../components/Spinner";
 import SampleImage from "./assets/images/user_role_admin.png";
+import AngryBoss from "./assets/images/angryboss.jpg";
 
 <Meta title="Modal" component={Modal} />
 
@@ -168,12 +169,75 @@ The official `Modal` comes with the following out of the box:
 
 ## Custom Stylez
 
+Sometimes you wanna swim upstream. It's okay, there are style overrides for that...but use sparingly, yeah?
+
+```jsx
+<Modal
+  isOpen={isOpen}
+  label="Describe modal for screen reader users"
+  onRequestClose={handleClose}
+  bodyStyle={{ backgroundColor: "tokens.color_text_default_de", padding: 100, margin: 100 }}
+>
+  This is where regular modal content goes.
+</Modal>
+);
+```
+
 <Canvas>
   <Story
     name="Custom Stylez"
     args={{
-      children: "Check out my margins. And my paddings. I'm so unique.",
-      bodyStyle: { backgroundColor: "red", padding: 100, margin: 100 },
+      closeButtonStyle: { opacity: 0.5, color: "#fff" },
+      children: (
+        <>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "56px 40px",
+              gap: 40,
+            }}
+          >
+            <img
+              src={AngryBoss}
+              alt="boss sample image"
+              width="50%"
+              style={{ position: "relative" }}
+            />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                width: "50%",
+                color: "#fff",
+              }}
+            >
+              <Text size="xl" as="h1" color="inherit">
+                Having a bad day?
+              </Text>
+              <Text
+                size="m"
+                as="p"
+                color="inherit"
+                weight="400"
+                ccMargin="s none m"
+              >
+                Click the button. Do it.
+              </Text>
+              <div class="dark-environment">
+                <Button color="secondary" hideIcon>
+                  Delete Internet
+                </Button>
+              </div>
+            </div>
+          </div>
+        </>
+      ),
+      bodyStyle: {
+        padding: 0,
+        backgroundColor: "#CC2701",
+      },
     }}
   >
     {Template.bind({})}
