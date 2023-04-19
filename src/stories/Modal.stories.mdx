@@ -195,11 +195,48 @@ The official `Modal` comes with the following out of the box:
 
 ## Alert
 
+To render an alert, pass `alert={{isVisible}}` to the Modal. The alert will overlay the original Modal content.
+
+```jsx
+
+  <Modal
+    isOpen={isOpen}
+    label="Describe modal for screen reader users"
+    onRequestClose={handleClose}
+    alert={{
+      isVisible,
+      title: "Something went wrong.",
+      message: "Hit the Try Again button to refresh the list.",
+      actionLabel: "Try Again",
+      actionOnClick: () => {},
+    }}
+  >
+    This is where regular modal content goes.
+  </Modal>
+);
+```
+
 <Canvas>
   <Story
     name="Alert"
     args={{
-      alert: { isVisible: true },
+      children: (
+        <div style={{ textAlign: "center" }}>
+          <img src={SampleImage} alt="sample image" width="100%" />
+          <Text size="xl" as="h1" color="default">
+            You look wonderful, today.
+          </Text>
+          <Text size="l" as="p" color="subtle" weight="400" ccMargin="s none m">
+            Here's a key to the city.
+          </Text>
+        </div>
+      ),
+      alert: {
+        isVisible: true,
+        title: "Error Loading Content",
+        message: "Something went wrong.",
+        actionLabel: "Try Again",
+      },
     }}
   >
     {Template.bind({})}
