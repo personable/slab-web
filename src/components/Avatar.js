@@ -135,10 +135,10 @@ const Image = styled.div`
   background-image: url(${(props) => props.imageSrc});
   background-size: cover;
   background-position: 50%;
-  background-color: ${(props) => props.backgroundColor ? props.backgroundColor : 'var(--cc_color_background_3)'};
+  background-color: ${(props) => `var(--cc_color_${props.backgroundColor})`};
   border: 2px solid;
-  border-color: ${(props) => props.color ? props.color : 'transparent'};
-  color: ${(props) => props.textColor ? props.textColor : 'var(--cc_color_text_subtle)'};
+  border-color: ${(props) => props.color ? `var(--cc_color_collab_${props.color})` : 'transparent'};
+  color: var(--cc_color_text_subtle);
   ${(props) => props.showNameOnHover ? hintTooltipStyles : null};
 `;
 
@@ -180,7 +180,6 @@ const Avatar = ({
   src,
   color,
   backgroundColor,
-  textColor,
   size,
   className,
   style,
@@ -197,7 +196,6 @@ const Avatar = ({
       avatarSize={avatarSize}
       color={color}
       backgroundColor={backgroundColor}
-      textColor={textColor}
       imageSrc={src}
       aria-label={name}
       style={style}
@@ -209,7 +207,7 @@ const Avatar = ({
       ) : null}
 
       {!src && initials ? (
-        <AvatarInitials textColor={textColor} avatarSize={avatarSize} initials={customInitials ? customInitials : initials} />
+        <AvatarInitials avatarSize={avatarSize} initials={customInitials ? customInitials : initials} />
       ) : null}
 
       {name ? ( 
@@ -226,17 +224,44 @@ const Avatar = ({
 Avatar.propTypes = {
   name: PropTypes.string,
   src: PropTypes.string,
-  color: PropTypes.string,
-  backgroundColor: PropTypes.string,
-  textColor: PropTypes.string,
+  color: PropTypes.oneOf([
+    "purple",
+    "orange",
+    "green",
+    "blue",
+    "red",
+    "yellow",
+    "navy",
+    "plum",
+    "magenta",
+    "brown",
+    "owner",
+  ]),
+  backgroundColor: PropTypes.oneOf([
+    "background_1",
+    "background_2",
+    "background_3",
+  ]),
   size: PropTypes.oneOfType([
-    PropTypes.oneOf(["tiny", "small", "medium", "large"]),
+    PropTypes.oneOf([
+      "tiny",
+      "small",
+      "medium",
+      "large",
+    ]),
     PropTypes.number,
   ]),
   className: PropTypes.string,
   style: PropTypes.object,
   showNameOnHover: PropTypes.bool,
-  tooltipPosition: PropTypes.oneOf(["top-center", "top-left", "top-right", "bottom-center", "bottom-left", "bottom-right"]),
+  tooltipPosition: PropTypes.oneOf([
+    "top-center",
+    "top-left",
+    "top-right",
+    "bottom-center",
+    "bottom-left",
+    "bottom-right",
+  ]),
   customInitials: PropTypes.string,
   isHomeowner: PropTypes.bool,
 };
@@ -246,8 +271,7 @@ Avatar.defaultProps = {
   src: '',
   size: "medium",
   color: undefined,
-  backgroundColor: undefined,
-  textColor: undefined,
+  backgroundColor: "background_3",
   className: undefined,
   style: undefined,
   showNameOnHover: false,
