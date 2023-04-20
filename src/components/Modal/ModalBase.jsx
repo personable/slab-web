@@ -4,7 +4,7 @@ import styled from "styled-components";
 import ReactModal from "react-modal";
 
 import * as tokens from "../shared/tokens.js";
-import ButtonIcon from "../ButtonIcon";
+import ButtonIconCondensed from "../ButtonIconCondensed";
 import ScreenReaderContent from "../ScreenReaderContent";
 import "./modal.styles.css";
 
@@ -44,10 +44,10 @@ const StyledReactModal = styled(ReactModal)`
   }
 `;
 
-const CloseButton = styled(ButtonIcon)`
+const CloseButton = styled(ButtonIconCondensed)`
   position: absolute;
-  inset-block-start: var(--cc_size_spacing_s);
-  inset-inline-end: var(--cc_size_spacing_s);
+  inset-block-start: var(--cc_size_spacing_m);
+  inset-inline-end: var(--cc_size_spacing_m);
   z-index: 1;
 `;
 
