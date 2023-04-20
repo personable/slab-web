@@ -1,0 +1,168 @@
+import { Canvas, Meta, Story, ArgsTable } from "@storybook/addon-docs";
+import Badge from "../components/Badge";
+import Button from "../components/Button";
+import Spinner from "../components/Spinner";
+
+<Meta title="Badge" component={Badge} />
+
+export const Template = (args) => <Badge {...args} />;
+
+# 🏷️ Badge
+
+`Badge` is used to display brief status-related information. For longer text, please use `Notice`.
+
+The most common application for a `Badge` is in a list item, to display the status of an asset, event, or user. `Badge` should not be pressable, but can be part of a pressable containing other items.
+
+## Usage
+
+```jsx
+import Badge from 'components/shared/DesignSystem/SlabTransferPortal/Badge';
+
+---
+
+<Badge name="Jean-Ralphio Saperstein" />
+```
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      children: "Badge",
+      iconName: "account-check"
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## Variations
+
+<Canvas>
+  <Story
+    name="regular"
+    args={{
+      children: "Invited",
+      iconName: "account-check",
+      color: "success",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="new"
+    args={{
+      children: "New",
+      color: "caution"
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="upgrade"
+    args={{
+      children: "Pro",
+      iconName: "lightning-bolt-circle",
+      color: "upgrade",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="connected"
+    args={{
+      children: "Connected",
+      iconName: "link-variant",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="pending"
+    args={{
+      children: "Signature Pending",
+      iconName: "file-sign",
+      color: "caution",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="deactivated"
+    args={{
+      children: "Deactivated",
+      iconName: "account-off",
+      color: "destroy",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story
+    name="regular-small"
+    args={{
+      children: "Invited",
+      iconName: "account-check",
+      color: "success",
+      size: "small",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="new-small"
+    args={{
+      children: "New",
+      color: "caution",
+      size: "small",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="upgrade-small"
+    args={{
+      children: "Pro",
+      iconName: "lightning-bolt-circle",
+      color: "upgrade",
+      size: "small",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="connected-small"
+    args={{
+      children: "Connected",
+      iconName: "link-variant",
+      size: "small",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="pending-small"
+    args={{
+      children: "Signature Pending",
+      iconName: "file-sign",
+      color: "caution",
+      size: "small",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="deactivated-small"
+    args={{
+      children: "Deactivated",
+      iconName: "account-off",
+      color: "destroy",
+      size: "small",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
