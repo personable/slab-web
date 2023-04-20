@@ -93,9 +93,9 @@ const ModalBase = ({
     >
       {showCloseButton && (
         <CloseButton
-          minimal
           iconName="close"
           size="large"
+          shape="square"
           onClick={onRequestClose}
           style={closeButtonStyle}
           data-testid="shared__modal-close-button"
