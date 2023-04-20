@@ -55,9 +55,7 @@ const Title = styled.h2`
   font-weight: 700;
 `;
 const Body = styled.div`
-  padding: ${(props) =>
-      props.hideHeaderBorder ? 0 : "var(--cc_size_spacing_l)"}
-    var(--cc_size_spacing_xl) var(--cc_size_spacing_l);
+  padding: var(--cc_size_spacing_l) var(--cc_size_spacing_xl);
   overflow-y: auto;
 `;
 const Footer = styled.div`
@@ -99,7 +97,6 @@ const Modal = ({
   style,
   className,
   closeButtonStyle,
-  hideHeaderBorder,
   headerStyle,
   bodyStyle,
   footerStyle,
@@ -198,21 +195,12 @@ const Modal = ({
       <>
         {renderAlert(alert)}
         {title ? (
-          <Header
-            showCloseButton={showCloseButton}
-            style={
-              hideHeaderBorder
-                ? (headerStyle = { borderBottom: 0 })
-                : headerStyle
-            }
-          >
+          <Header showCloseButton={showCloseButton} style={headerStyle}>
             {renderTitle(title)}
           </Header>
         ) : null}
 
-        <Body hideHeaderBorder={hideHeaderBorder} style={bodyStyle}>
-          {children}
-        </Body>
+        <Body style={bodyStyle}>{children}</Body>
 
         {shouldRenderFooter ? (
           <Footer style={footerStyle}>
@@ -358,10 +346,6 @@ Modal.propTypes = {
    */
   headerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   /**
-   * Hides the bottom border of the header
-   */
-  hideHeaderBorder: PropTypes.bool,
-  /**
    * Override the default style of the body
    */
   bodyStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
@@ -418,7 +402,6 @@ Modal.defaultProps = {
   headerStyle: {},
   bodyStyle: {},
   footerStyle: {},
-  hideHeaderBorder: false,
 };
 
 export default Modal;
