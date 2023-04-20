@@ -57,7 +57,7 @@ const Title = styled.h2`
 const Body = styled.div`
   padding: ${(props) =>
       props.hideHeaderBorder ? 0 : "var(--cc_size_spacing_l)"}
-    var(--cc_size_spacing_xl) var(--cc_size_spacing_xl);
+    var(--cc_size_spacing_xl) var(--cc_size_spacing_l);
   overflow-y: auto;
 `;
 const Footer = styled.div`
