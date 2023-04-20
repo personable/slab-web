@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Canvas, Meta, Story, ArgsTable } from "@storybook/addon-docs";
 import Button from "../components/Button";
+import ButtonCondensed from "../components/ButtonCondensed";
 import ButtonIconCondensed from "../components/ButtonIconCondensed";
 import Modal from "../components/Modal/Modal";
 import Text from "../components/Text";
@@ -108,13 +109,42 @@ The official `Modal` comes with the following out of the box:
 
 ## With footer
 
+```jsx
+<Modal
+  isOpen={isOpen}
+  label="Describe modal for screen reader users"
+  onRequestClose={handleClose}
+  primaryAction={{ label: "Done", onClick: () => {} }}
+  secondaryAction={{ label: "Edit Note", onClick: () => {} }}
+  footerContentBefore={
+    <ButtonCondensed color="destroy">Delete Note</ButtonCondensed>
+  }
+>
+  This is where modal content goes.
+</Modal>
+);
+```
+
 <Canvas>
   <Story
     name="With footer"
     args={{
-      children: "Large Content",
-      primaryAction: { label: "Publish", onClick: () => {} },
-      secondaryAction: { label: "Save as Draft", onClick: () => {} },
+      headerStyle: { textAlign: "center" },
+      title: "4/20/23 Walkthrough",
+      children: (
+        <Text size="m" as="p" color="subtle" weight="400" ccMargin="s none">
+          Tree trunks grow however makes them happy. If you overwork it you
+          become a cloud killer. There's nothing worse than a cloud killer.
+          Let's build some happy little clouds up here. See. We take the corner
+          of the brush and let it play back-and-forth. All kinds of happy little
+          splashes.
+        </Text>
+      ),
+      primaryAction: { label: "Done", onClick: () => {} },
+      secondaryAction: { label: "Edit Note", onClick: () => {} },
+      footerContentBefore: (
+        <ButtonCondensed color="destroy">Delete Note</ButtonCondensed>
+      ),
     }}
   >
     {Template.bind({})}
@@ -144,11 +174,9 @@ Passing `showCloseButton={false}` hides the close button in the header.
       title: "This modal is very important.",
       showCloseButton: false,
       children: (
-        <div>
-          <Text size="m" as="p" color="subtle" weight="400" ccMargin="s none">
-            Maybe you want users to focus on the primary button instead?
-          </Text>
-        </div>
+        <Text size="m" as="p" color="subtle" weight="400" ccMargin="s none">
+          So important you want users to focus on the primary button.
+        </Text>
       ),
       primaryAction: { label: "Click overlay to close", onClick: () => {} },
     }}
@@ -177,8 +205,12 @@ Passing `shouldCloseOnOverlayClick={false}` disables closing the modal on overla
   <Story
     name="Without overlay click"
     args={{
-      title: "Hit the close button instead...",
-      children: "Maybe clicking on the overlay feels risky.",
+      title: "Don't click the overlay to close.",
+      children: (
+        <Text size="m" as="p" color="subtle" weight="400" ccMargin="s none">
+          Try the close button instead.
+        </Text>
+      ),
       shouldCloseOnOverlayClick: false,
     }}
   >
