@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import Spinner from "../Spinner";
 import Button from "../Button";
@@ -44,9 +44,15 @@ const AbsoluteLayout = styled.div`
 const Header = styled.div`
   padding: var(--cc_size_spacing_l)
     ${(props) => (props.showCloseButton ? "60px" : "var(--cc_size_spacing_l)")}
-    var(--cc_size_spacing_l) var(--cc_size_spacing_xl);
-  border-block-end: var(--cc_size_border_width_s) solid
-    var(--cc_color_border_default);
+    ${(props) => (props.hideHeaderBorder ? 0 : "var(--cc_size_spacing_l)")}
+    var(--cc_size_spacing_xl);
+  ${(props) =>
+    !props.hideHeaderBorder
+      ? css`
+          border-block-end: var(--cc_size_border_width_s) solid
+            var(--cc_color_border_default);
+        `
+      : null}
 `;
 const Title = styled.h2`
   margin: 0;
@@ -100,6 +106,7 @@ const Modal = ({
   headerStyle,
   bodyStyle,
   footerStyle,
+  hideHeaderBorder,
 }) => {
   const shouldRenderFooter =
     primaryAction.onClick ||
@@ -195,7 +202,11 @@ const Modal = ({
       <>
         {renderAlert(alert)}
         {title ? (
-          <Header showCloseButton={showCloseButton} style={headerStyle}>
+          <Header
+            hideHeaderBorder={hideHeaderBorder}
+            showCloseButton={showCloseButton}
+            style={headerStyle}
+          >
             {renderTitle(title)}
           </Header>
         ) : null}
@@ -346,6 +357,10 @@ Modal.propTypes = {
    */
   headerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   /**
+   * Hides the bottom border of the header
+   */
+  hideHeaderBorder: PropTypes.bool,
+  /**
    * Override the default style of the body
    */
   bodyStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
@@ -400,6 +415,7 @@ Modal.defaultProps = {
   style: {},
   closeButtonStyle: {},
   headerStyle: {},
+  hideHeaderBorder: false,
   bodyStyle: {},
   footerStyle: {},
 };
