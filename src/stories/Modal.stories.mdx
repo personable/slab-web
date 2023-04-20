@@ -129,10 +129,17 @@ The official `Modal` comes with the following out of the box:
   <Story
     name="With footer"
     args={{
-      headerStyle: { textAlign: "center" },
-      title: "4/20/23 Walkthrough",
+      hideHeaderBorder: true,
+      showCloseButton: false,
+      title: "Notes from Bob Ross",
       children: (
-        <Text size="m" as="p" color="subtle" weight="400" ccMargin="s none">
+        <Text
+          size="m"
+          as="p"
+          color="subtle"
+          weight="400"
+          ccMargin="none none s"
+        >
           Tree trunks grow however makes them happy. If you overwork it you
           become a cloud killer. There's nothing worse than a cloud killer.
           Let's build some happy little clouds up here. See. We take the corner
@@ -141,7 +148,7 @@ The official `Modal` comes with the following out of the box:
         </Text>
       ),
       primaryAction: { label: "Done", onClick: () => {} },
-      secondaryAction: { label: "Edit Note", onClick: () => {} },
+      secondaryAction: { label: "Edit", onClick: () => {} },
       footerContentBefore: (
         <ButtonCondensed color="destroy">Delete Note</ButtonCondensed>
       ),
