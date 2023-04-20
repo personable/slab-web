@@ -36,7 +36,6 @@ import Modal from "components/shared/DesignSystem/SlabTransferPortal/Modal";
     isOpen={isOpen}
     label="Describe modal for screen reader users"
     onRequestClose={handleClose}
-    size="small"
   >
     This is where modal content goes.
   </Modal>
@@ -68,16 +67,13 @@ The official `Modal` comes with the following out of the box:
           </Text>
         </div>
       ),
-      size: "small",
     }}
   >
     {Template.bind({})}
   </Story>
 </Canvas>
 
-<ArgsTable story="default" />
-
-## Small
+## Sizes
 
 <Canvas>
   <Story
@@ -85,6 +81,24 @@ The official `Modal` comes with the following out of the box:
     args={{
       children: "Small Content",
       size: "small",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Small"
+    args={{
+      children: "Medium Content",
+      size: "medium",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Sizes"
+    args={{
+      children: "Small Content",
+      size: "large",
     }}
   >
     {Template.bind({})}
@@ -152,7 +166,7 @@ The official `Modal` comes with the following out of the box:
 
 ## Without Overlay Click
 
-Passing `shouldCloseOnOverlayClick={false}` disables closing the modal on overlay click, if that feels risky to you.
+Passing `shouldCloseOnOverlayClick={false}` disables closing the modal on overlay click.
 
 <Canvas>
   <Story
@@ -212,7 +226,7 @@ Sometimes you wanna swim upstream. It's okay, there are style overrides for that
               }}
             >
               <Text size="xl" as="h1" color="inherit">
-                Having a bad day?
+                When $#!^ hits the fan...
               </Text>
               <Text
                 size="m"
@@ -221,13 +235,8 @@ Sometimes you wanna swim upstream. It's okay, there are style overrides for that
                 weight="400"
                 ccMargin="s none m"
               >
-                Click the button. Do it.
+                Take a second to smile.
               </Text>
-              <div class="dark-environment">
-                <Button color="secondary" hideIcon>
-                  Delete Internet
-                </Button>
-              </div>
             </div>
             <img
               src={HotAir}
@@ -327,3 +336,5 @@ To render an alert, pass `alert={{isVisible}}` to the Modal. The alert will over
     {Template.bind({})}
   </Story>
 </Canvas>
+
+<ArgsTable story="default" />
