@@ -80,10 +80,10 @@ const FooterActions = styled.div`
   flex-shrink: 0;
 `;
 const PrimaryActionButton = styled(Button)`
-  margin-inline-start: var(--cc_size_spacing_s);
+  margin-inline-start: var(--cc_size_spacing_m);
 `;
 const SecondaryActionButton = styled(Button)`
-  margin-inline-start: var(--cc_size_spacing_s);
+  margin-inline-start: var(--cc_size_spacing_m);
 `;
 const Modal = ({
   isOpen,
