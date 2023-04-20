@@ -54,7 +54,7 @@ The official `Modal` comes with the following out of the box:
 
 <Canvas>
   <Story
-    name="default"
+    name="Default"
     args={{
       children: (
         <div style={{ textAlign: "center" }}>
@@ -86,29 +86,6 @@ The official `Modal` comes with the following out of the box:
     {Template.bind({})}
   </Story>
   <Story
-    name="Small"
-    args={{
-      children: "Medium Content",
-      size: "medium",
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="Sizes"
-    args={{
-      children: "Small Content",
-      size: "large",
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-</Canvas>
-
-## Medium
-
-<Canvas>
-  <Story
     name="Medium"
     args={{
       children: "Medium Content",
@@ -117,11 +94,6 @@ The official `Modal` comes with the following out of the box:
   >
     {Template.bind({})}
   </Story>
-</Canvas>
-
-## Large
-
-<Canvas>
   <Story
     name="Large"
     args={{
@@ -133,11 +105,11 @@ The official `Modal` comes with the following out of the box:
   </Story>
 </Canvas>
 
-## Footer
+## With footer
 
 <Canvas>
   <Story
-    name="Footer"
+    name="With footer"
     args={{
       children: "Large Content",
       primaryAction: { label: "Publish", onClick: () => {} },
@@ -181,7 +153,7 @@ Passing `shouldCloseOnOverlayClick={false}` disables closing the modal on overla
   </Story>
 </Canvas>
 
-## Custom Stylez
+## With custom styles
 
 Sometimes you wanna swim upstream. It's okay, there are style overrides for that...but use sparingly, yeah?
 
@@ -199,7 +171,7 @@ Sometimes you wanna swim upstream. It's okay, there are style overrides for that
 
 <Canvas>
   <Story
-    name="Custom Stylez"
+    name="With custom styles"
     args={{
       style: {
         padding: 0,
@@ -223,17 +195,22 @@ Sometimes you wanna swim upstream. It's okay, there are style overrides for that
                 display: "flex",
                 flexDirection: "column",
                 color: "#fff",
+                width: "100%",
+                position: "relative",
+                top: 2,
+                zIndex: 5,
+                backgroundColor: "#0068DB",
               }}
             >
-              <Text size="xl" as="h1" color="inherit">
+              <Text size="xxl" as="h1" color="inherit" ccMargin="l none none">
                 When $#!^ hits the fan...
               </Text>
               <Text
-                size="m"
+                size="l"
                 as="p"
                 color="inherit"
                 weight="400"
-                ccMargin="s none m"
+                ccMargin="s none none"
               >
                 Take a second to smile.
               </Text>
@@ -337,4 +314,4 @@ To render an alert, pass `alert={{isVisible}}` to the Modal. The alert will over
   </Story>
 </Canvas>
 
-<ArgsTable story="default" />
+<ArgsTable story="Default" />
