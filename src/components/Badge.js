@@ -40,9 +40,9 @@ const getBgColor = (color) => {
   if (color === 'info') {
     return 'var(--cc_color_background_2)';
   } else if (color === 'upgrade') {
-    return `var(--cc_color_brand_upgrade_lighten_85)`;
+    return `var(--cc_color_brand_upgrade_alpha_20)`;
   } else {
-    return `var(--cc_color_utility_${color}_lighten_85)`;
+    return `var(--cc_color_utility_${color}_alpha_20)`;
   }
 };
 
