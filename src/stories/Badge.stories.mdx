@@ -62,7 +62,7 @@ import Badge from 'components/shared/DesignSystem/SlabTransferPortal/Badge';
   <Story
     name="upgrade"
     args={{
-      children: "Pro",
+      children: "Upgrade",
       iconName: "lightning-bolt-circle",
       color: "upgrade",
     }}
@@ -98,6 +98,16 @@ import Badge from 'components/shared/DesignSystem/SlabTransferPortal/Badge';
   >
     {Template.bind({})}
   </Story>
+  <Story
+    name="add-on"
+    args={{
+      children: "Add-On",
+      iconName: "plus-circle-outline",
+      color: "add_on",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
 </Canvas>
 
 <Canvas>
@@ -125,7 +135,7 @@ import Badge from 'components/shared/DesignSystem/SlabTransferPortal/Badge';
   <Story
     name="upgrade-small"
     args={{
-      children: "Pro",
+      children: "Upgrade",
       iconName: "lightning-bolt-circle",
       color: "upgrade",
       size: "small",
@@ -160,6 +170,17 @@ import Badge from 'components/shared/DesignSystem/SlabTransferPortal/Badge';
       children: "Deactivated",
       iconName: "account-off",
       color: "destroy",
+      size: "small",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="add-on-small"
+    args={{
+      children: "Add-On",
+      iconName: "plus-circle-outline",
+      color: "add_on",
       size: "small",
     }}
   >

@@ -39,8 +39,8 @@ const getHorizontalPadding = (size) => {
 const getBgColor = (color) => {
   if (color === 'info') {
     return 'var(--cc_color_background_2)';
-  } else if (color === 'upgrade') {
-    return `var(--cc_color_brand_upgrade_alpha_20)`;
+  } else if (color === 'upgrade' || color === 'add_on') {
+    return `var(--cc_color_brand_${color}_alpha_20)`;
   } else {
     return `var(--cc_color_utility_${color}_alpha_20)`;
   }
@@ -49,9 +49,9 @@ const getBgColor = (color) => {
 const getBorderColor = (color) => {
   if (color === 'info') {
     return 'var(--cc_color_border_default)';
-  } else if (color === 'upgrade') {
-    return `var(--cc_color_brand_upgrade_alpha_60)`;
-  }  else {
+  } else if (color === 'upgrade' || color === 'add_on') {
+    return `var(--cc_color_brand_${color}_alpha_60)`;
+  } else {
     return `var(--cc_color_utility_${color}_alpha_60)`;
   }
 };
@@ -106,9 +106,19 @@ const BadgeStatus = ({
 BadgeStatus.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  color: PropTypes.oneOf(['caution', 'info', 'success', 'destroy', 'upgrade']),
+  color: PropTypes.oneOf([
+    'caution',
+    'info',
+    'success',
+    'destroy',
+    'upgrade',
+    'add_on',
+  ]),
   iconName: PropTypes.string,
-  size: PropTypes.oneOf(['small', 'medium']),
+  size: PropTypes.oneOf([
+    'small',
+    'medium'
+  ]),
   style: PropTypes.object,
 };
 
