@@ -134,7 +134,7 @@ const Image = styled.div`
   background-image: url(${(props) => props.imageSrc});
   background-size: cover;
   background-position: 50%;
-  background-color: ${(props) => `var(--cc_color_${props.backgroundColor})`};
+  background-color: var(--cc_color_background_3);
   border: 2px solid;
   border-color: ${(props) => props.color ? `var(--cc_color_collab_${props.color})` : 'transparent'};
   color: var(--cc_color_text_subtle);
@@ -184,7 +184,6 @@ const Avatar = ({
   name,
   src,
   color,
-  backgroundColor,
   size,
   className,
   style,
@@ -200,7 +199,6 @@ const Avatar = ({
       className={className}
       avatarSize={avatarSize}
       color={color}
-      backgroundColor={backgroundColor}
       imageSrc={src}
       aria-label={name}
       style={style}
@@ -242,11 +240,6 @@ Avatar.propTypes = {
     "brown",
     "owner",
   ]),
-  backgroundColor: PropTypes.oneOf([
-    "background_1",
-    "background_2",
-    "background_3",
-  ]),
   size: PropTypes.oneOfType([
     PropTypes.oneOf([
       "tiny",
@@ -276,7 +269,6 @@ Avatar.defaultProps = {
   src: '',
   size: "medium",
   color: undefined,
-  backgroundColor: "background_3",
   className: undefined,
   style: undefined,
   showNameOnHover: false,

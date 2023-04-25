@@ -122,25 +122,23 @@ Avatar sizes are mapped to the `size_avatar` set of design tokens. However, you 
 </Canvas>
 
 ## Colors
-Avatars will have a default background color of `var(--cc_color_background_3)`, but you can override that with the `backgroundColor` prop which accepts levels 1, 2, and 3 background colors from our tokens color library. For example, you might be rendering Avatars inside a container that already has a level 3 background color, in which case you could change the `backgroundColor` prop to `var(--cc_color_background_1)`.
-
 To represent a user from a collaborating company, use the `color` prop to create a color border around the Avatar. The `color` prop accepts `color_collab_[color]` token values.
 
 <Canvas>
-  <Story
-    name="custom background color"
-    args={{
-      name: "Jean-Ralphio Saperstein",
-      backgroundColor: "background_1",
-    }}
-  >
-    {Template.bind({})}
-  </Story>
   <Story
     name="collaborator"
     args={{
       name: "Jean-Ralphio Saperstein",
       color: "green",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="owner"
+    args={{
+      name: "Jean-Ralphio Saperstein",
+      color: "owner",
     }}
   >
     {Template.bind({})}
