@@ -123,8 +123,7 @@ const avatarSizes = {
 
 const Image = styled.div`
   position: relative;
-  display: grid;
-  place-items: center;
+  display: flex;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
@@ -151,10 +150,11 @@ const Initials = styled.div`
 
 const IconBadgeBase = styled.i`
   position: absolute;
-  top: -6px;
-  right: -6px;
+  top: -8px;
+  right: -8px;
   display: flex;
-  place-items: center;
+  justify-content: center;
+  align-items: center;
   width: ${(props) => `${props.iconSize}px`};
   height: ${(props) => `${props.iconSize}px`};
   padding: ${(props) => `${props.padding}px`};
@@ -162,6 +162,11 @@ const IconBadgeBase = styled.i`
   border-radius: 50%;
   color: white;
   font-size: ${(props) => `${props.iconSize}px`};
+  box-sizing: content-box;
+
+  &::before, &::after {
+    box-sizing: content-box;
+  }
 `;
 
 const IconBadge = ({ avatarSize, iconName }) => {
