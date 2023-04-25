@@ -81,7 +81,17 @@ The official `Modal` comes with the following out of the box:
   <Story
     name="Small"
     args={{
-      children: "Small Content",
+      children: (
+        <div style={{ textAlign: "center" }}>
+          <img src={SampleImage} alt="sample image" width="100%" />
+          <Text size="xl" as="h1" color="default">
+            You look wonderful, today.
+          </Text>
+          <Text size="l" as="p" color="subtle" weight="400" ccMargin="s none m">
+            Here's a key to the city.
+          </Text>
+        </div>
+      ),
       size: "small",
     }}
   >
@@ -90,7 +100,32 @@ The official `Modal` comes with the following out of the box:
   <Story
     name="Medium"
     args={{
-      children: "Medium Content",
+      children: (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            height: "100%",
+          }}
+        >
+          <img src={SampleImage} alt="sample image" width="50%" />
+          <div styl={{ display: "flex", flexDirection: "column", flex: 1 }}>
+            <Text size="xl" as="h1" color="default">
+              You look wonderful, today.
+            </Text>
+            <Text
+              size="l"
+              as="p"
+              color="subtle"
+              weight="400"
+              ccMargin="s none m"
+            >
+              Here's a key to the city.
+            </Text>
+          </div>
+        </div>
+      ),
       size: "medium",
     }}
   >
@@ -99,7 +134,32 @@ The official `Modal` comes with the following out of the box:
   <Story
     name="Large"
     args={{
-      children: "Large Content",
+      children: (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            height: "100%",
+          }}
+        >
+          <img src={SampleImage} alt="sample image" width="50%" />
+          <div styl={{ display: "flex", flexDirection: "column", flex: 1 }}>
+            <Text size="xl" as="h1" color="default">
+              You look wonderful, today.
+            </Text>
+            <Text
+              size="l"
+              as="p"
+              color="subtle"
+              weight="400"
+              ccMargin="s none m"
+            >
+              Here's a key to the city.
+            </Text>
+          </div>
+        </div>
+      ),
       size: "large",
     }}
   >
