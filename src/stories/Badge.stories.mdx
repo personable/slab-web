@@ -11,7 +11,7 @@ export const Template = (args) => <Badge {...args} />;
 
 `Badge` is used to display brief status-related information. For longer text, please use `Notice`.
 
-The most common application for a `Badge` is in a list item, to display the status of an asset, event, or user. `Badge` should not be pressable, but can be part of a pressable containing other items.
+The most common application for a `Badge` is in a list item, to display the status of an asset, event, or user, or to denote that something is new or is behind an updgraded plan paywall. `Badge` should not be pressable, but can be part of a pressable containing other items.
 
 ## Usage
 
@@ -20,7 +20,7 @@ import Badge from 'components/shared/DesignSystem/SlabTransferPortal/Badge';
 
 ---
 
-<Badge name="Jean-Ralphio Saperstein" />
+<Badge children="Badge" />
 ```
 
 <Canvas>
