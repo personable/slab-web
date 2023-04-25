@@ -10,7 +10,7 @@ body.ReactModal__Body--open {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-color: rgba(20, 35, 52, 0.85);
+  background-color: var(--cc_color_background_backdrop);
   z-index: 900;
   opacity: 0;
   transition: opacity 300ms;
