@@ -40,8 +40,8 @@ import Avatar from 'components/shared/DesignSystem/SlabTransferPortal/Avatar';
 
 The content that displays inside `Avatar` is based on a priority/fallback system.
 1. If a `src` exists (i.e. the user's profile photo), then the image will display.
-1. If there is no `src`, `Avatar` will attempt to get initials automatically based off the `name` prop (likely the user's name). A max of 3 initials will be displayed. Alternatively, you can override the default initials behavior and set your own initials manually using the `CustomInitials` prop.
-1. If there is no `src`, `name`, or `CustomInitials` (i.e. a newly invited user who hasn't finished setting up their account), we'll display a fallback generic user icon.
+1. If there is no `src`, `Avatar` will attempt to get initials automatically based off the `name` prop. A max of 3 initials will be displayed. Alternatively, you can override the default initials behavior and set your own initials manually using the `customInitials` prop (i.e. you have a row of Avatars and want to show a `+15` on the last one of the row to indicate there are more that aren't being displayed in that row).
+1. If there is no `src`, `name`, or `customInitials` (i.e. a newly invited user who hasn't finished setting up their account), we'll display a fallback generic user icon based off the `iconName` prop (which uses the [MDI](https://pictogrammers.com/library/mdi/) icon names and has a default value of "account". )
 
 <Canvas>
   <Story
@@ -57,7 +57,7 @@ The content that displays inside `Avatar` is based on a priority/fallback system
     name="custom initials"
     args={{
       name: "Jean-Ralphio Saperstein",
-      customInitials: "XX"
+      customInitials: "+15"
     }}
   >
     {Template.bind({})}
@@ -71,8 +71,16 @@ The content that displays inside `Avatar` is based on a priority/fallback system
     {Template.bind({})}
   </Story>
   <Story
-    name="blank"
+    name="generic fallback"
     args={{
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="custom icon fallback"
+    args={{
+      iconName: "account-group"
     }}
   >
     {Template.bind({})}
@@ -80,7 +88,7 @@ The content that displays inside `Avatar` is based on a priority/fallback system
 </Canvas>
 
 ## Sizes
-Avatar sizes are mapped to the `size_avatar` set of design tokens. However, you can also set the size as a number if one of the tokens doesn't work.
+Avatar sizes are mapped to the `size_avatar` set of [design tokens](https://github.com/CompanyCam/slab/blob/develop/src/shared/tokens/properties/size.json#L74). However, you can also set the size as a number if one of the tokens doesn't work.
 
 <Canvas>
   <Story
@@ -122,14 +130,14 @@ Avatar sizes are mapped to the `size_avatar` set of design tokens. However, you 
 </Canvas>
 
 ## Colors
-To represent a user from a collaborating company, use the `color` prop to create a color border around the Avatar. The `color` prop accepts `color_collab_[color]` token values.
+To represent a user from a collaborating company, use the `color` prop to create a color border around the Avatar. The `color` prop accepts any string, but it's recommended you use our [`collab` token](https://github.com/CompanyCam/slab/blob/develop/src/shared/tokens/properties/color.json#L311) CSS variables (i.e. `"var(--cc_color_collab_navy)"`).
 
 <Canvas>
   <Story
     name="collaborator"
     args={{
       name: "Jean-Ralphio Saperstein",
-      color: "green",
+      color: "var(--cc_color_collab_green)",
     }}
   >
     {Template.bind({})}
@@ -138,14 +146,14 @@ To represent a user from a collaborating company, use the `color` prop to create
     name="owner"
     args={{
       name: "Jean-Ralphio Saperstein",
-      color: "owner",
+      color: "var(--cc_color_collab_owner)",
     }}
   >
     {Template.bind({})}
   </Story>
 </Canvas>
 
-## Tooltip Hover
+<!-- ## Tooltip Hover
 Add the `showNameOnHover` prop if you want to show a tooltip with the Avatar's `name` inside. You can choose a `tooltipPosition` as well if the default (`top-center`) doesn't work for you.
 
 <Canvas>
@@ -220,11 +228,11 @@ Add the `showNameOnHover` prop if you want to show a tooltip with the Avatar's `
   >
     {Template.bind({})}
   </Story>
-</Canvas>
+</Canvas> -->
 
 
 
-## Icon Badge
+<!-- ## Icon Badge
 There may be times when we want to append an icon badge to an Avatar. The only example currently is a `isHomeowner` prop which adds a house icon in the top right corner of the Avatar. This is more a proof of concept at the moment and likely won't be used much - this may become more robust in the future.
 
 <Canvas>
@@ -237,4 +245,4 @@ There may be times when we want to append an icon badge to an Avatar. The only e
   >
     {Template.bind({})}
   </Story>
-</Canvas>
+</Canvas> -->
