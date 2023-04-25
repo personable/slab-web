@@ -218,6 +218,40 @@ The official `Modal` comes with the following out of the box:
   </Story>
 </Canvas>
 
+## Without header border
+
+Passing `hideHeaderBorder={true}` hides the bottom border in the header.
+
+```jsx
+<Modal
+  isOpen={isOpen}
+  label="Describe modal for screen reader users"
+  onRequestClose={handleClose}
+  hideHeaderBorder={true}
+>
+  This is where modal content goes.
+</Modal>
+);
+```
+
+<Canvas>
+  <Story
+    name="Without header border"
+    args={{
+      title: "I'm borderless!",
+      hideHeaderBorder: true,
+      children: (
+        <Text size="m" as="p" color="subtle" weight="400" ccMargin="s none">
+          Notice how lovely the spacing between the header and body is.
+        </Text>
+      ),
+      primaryAction: { label: "Click overlay to close", onClick: () => {} },
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
 ## Without close button
 
 Passing `showCloseButton={false}` hides the close button in the header.
