@@ -28,7 +28,9 @@ const SpinnerLabel = styled.span`
   font-size: ${(props) => props.labelFontSize}px;
   color: var(--cc_color_text_subtle);
   margin-${(props) =>
-    props.layout === "vertical" ? "block-start" : "inline-start"}: 12px;
+    props.layout === "vertical"
+      ? "block-start"
+      : "inline-start"}: var(--cc_size_spacing_l);
 `;
 
 const SpinnerContainer = styled.span`

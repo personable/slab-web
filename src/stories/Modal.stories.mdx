@@ -1,0 +1,479 @@
+import { useState } from "react";
+import { Canvas, Meta, Story, ArgsTable } from "@storybook/addon-docs";
+import Button from "../components/Button";
+import ButtonCondensed from "../components/ButtonCondensed";
+import ButtonIconCondensed from "../components/ButtonIconCondensed";
+import Modal from "../components/Modal/Modal";
+import Text from "../components/Text";
+import Spinner from "../components/Spinner";
+import SampleImage from "./assets/images/user_role_admin.png";
+import HotAir from "./assets/images/hot-air.jpg";
+
+<Meta title="Modal" component={Modal} />
+
+export const Template = (args) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleModal = () => {
+    setIsOpen((prevIsOpen) => !prevIsOpen);
+  };
+  return (
+    <>
+      <Button onClick={toggleModal} color="primary" hideIcon>
+        Open Modal
+      </Button>
+      <Modal {...args} onRequestClose={toggleModal} isOpen={isOpen} />
+    </>
+  );
+};
+
+# ⏹️ Modal
+
+## Usage
+
+```jsx
+import Modal from "components/shared/DesignSystem/SlabTransferPortal/Modal";
+
+---(
+  <Modal
+    isOpen={isOpen}
+    label="Describe modal for screen reader users"
+    onRequestClose={handleClose}
+  >
+    This is where modal content goes.
+  </Modal>
+);
+```
+
+## Out of the Box
+
+The official `Modal` comes with the following out of the box:
+
+- Close Button
+- Close on overlay click
+- An accessibility label of "Modal Content"
+- Fade enter/exit animations
+- CompanyCam styles
+
+<Canvas>
+  <Story
+    name="Default"
+    args={{
+      children: (
+        <div style={{ textAlign: "center" }}>
+          <img src={SampleImage} alt="sample image" width="100%" />
+          <Text size="xl" as="h1" color="default">
+            You look wonderful, today.
+          </Text>
+          <Text size="l" as="p" color="subtle" weight="400" ccMargin="s none m">
+            Here's a key to the city.
+          </Text>
+        </div>
+      ),
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Sizes
+
+<Canvas>
+  <Story
+    name="Small"
+    args={{
+      children: (
+        <div style={{ textAlign: "center" }}>
+          <img src={SampleImage} alt="sample image" width="100%" />
+          <Text size="xl" as="h1" color="default">
+            You look wonderful, today.
+          </Text>
+          <Text size="l" as="p" color="subtle" weight="400" ccMargin="s none m">
+            Here's a key to the city.
+          </Text>
+        </div>
+      ),
+      size: "small",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Medium"
+    args={{
+      children: (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            height: "100%",
+          }}
+        >
+          <img src={SampleImage} alt="sample image" width="50%" />
+          <div styl={{ display: "flex", flexDirection: "column", flex: 1 }}>
+            <Text size="xl" as="h1" color="default">
+              You look wonderful, today.
+            </Text>
+            <Text
+              size="l"
+              as="p"
+              color="subtle"
+              weight="400"
+              ccMargin="s none m"
+            >
+              Here's a key to the city.
+            </Text>
+          </div>
+        </div>
+      ),
+      size: "medium",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Large"
+    args={{
+      children: (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            height: "100%",
+          }}
+        >
+          <img src={SampleImage} alt="sample image" width="50%" />
+          <div styl={{ display: "flex", flexDirection: "column", flex: 1 }}>
+            <Text size="xl" as="h1" color="default">
+              You look wonderful, today.
+            </Text>
+            <Text
+              size="l"
+              as="p"
+              color="subtle"
+              weight="400"
+              ccMargin="s none m"
+            >
+              Here's a key to the city.
+            </Text>
+          </div>
+        </div>
+      ),
+      size: "large",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## With footer
+
+```jsx
+<Modal
+  isOpen={isOpen}
+  label="Describe modal for screen reader users"
+  onRequestClose={handleClose}
+  primaryAction={{ label: "Done", onClick: () => {} }}
+  secondaryAction={{ label: "Edit Note", onClick: () => {} }}
+  footerContentBefore={
+    <ButtonCondensed color="destroy">Delete Note</ButtonCondensed>
+  }
+>
+  This is where modal content goes.
+</Modal>
+);
+```
+
+<Canvas>
+  <Story
+    name="With footer"
+    args={{
+      hideHeaderBorder: true,
+      showCloseButton: false,
+      title: "Notes from Bob Ross",
+      children: (
+        <Text
+          size="m"
+          as="p"
+          color="subtle"
+          weight="400"
+          ccMargin="none none s"
+        >
+          Tree trunks grow however makes them happy. If you overwork it you
+          become a cloud killer. There's nothing worse than a cloud killer.
+          Let's build some happy little clouds up here. See. We take the corner
+          of the brush and let it play back-and-forth. All kinds of happy little
+          splashes.
+        </Text>
+      ),
+      primaryAction: { label: "Done", onClick: () => {} },
+      secondaryAction: { label: "Edit", onClick: () => {} },
+      footerContentBefore: (
+        <ButtonCondensed color="destroy">Delete Note</ButtonCondensed>
+      ),
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Without header border
+
+Passing `hideHeaderBorder={true}` hides the bottom border in the header.
+
+```jsx
+<Modal
+  isOpen={isOpen}
+  label="Describe modal for screen reader users"
+  onRequestClose={handleClose}
+  hideHeaderBorder={true}
+>
+  This is where modal content goes.
+</Modal>
+);
+```
+
+<Canvas>
+  <Story
+    name="Without header border"
+    args={{
+      title: "I'm borderless!",
+      hideHeaderBorder: true,
+      children: (
+        <Text size="m" as="p" color="subtle" weight="400" ccMargin="s none">
+          Notice how lovely the spacing between the header and body is.
+        </Text>
+      ),
+      primaryAction: { label: "Click overlay to close", onClick: () => {} },
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Without close button
+
+Passing `showCloseButton={false}` hides the close button in the header.
+
+```jsx
+<Modal
+  isOpen={isOpen}
+  label="Describe modal for screen reader users"
+  onRequestClose={handleClose}
+  showCloseButton={false}
+>
+  This is where modal content goes.
+</Modal>
+);
+```
+
+<Canvas>
+  <Story
+    name="Without close button"
+    args={{
+      title: "This modal is very important.",
+      showCloseButton: false,
+      children: (
+        <Text size="m" as="p" color="subtle" weight="400" ccMargin="s none">
+          So important you want users to focus on the primary button.
+        </Text>
+      ),
+      primaryAction: { label: "Click overlay to close", onClick: () => {} },
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Without overlay click
+
+Passing `shouldCloseOnOverlayClick={false}` disables closing the modal on overlay click.
+
+```jsx
+<Modal
+  isOpen={isOpen}
+  label="Describe modal for screen reader users"
+  onRequestClose={handleClose}
+  shouldCloseOnOverlayClick={false}
+>
+  This is where modal content goes.
+</Modal>
+);
+```
+
+<Canvas>
+  <Story
+    name="Without overlay click"
+    args={{
+      title: "Don't click the overlay to close.",
+      children: (
+        <Text size="m" as="p" color="subtle" weight="400" ccMargin="s none">
+          Try the close button up there in the corner instead.
+        </Text>
+      ),
+      shouldCloseOnOverlayClick: false,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## With custom styles
+
+Sometimes you wanna swim upstream. It's okay, there are style overrides for that...but use sparingly, yeah?
+
+```jsx
+<Modal
+  isOpen={isOpen}
+  label="Describe modal for screen reader users"
+  onRequestClose={handleClose}
+  bodyStyle={{ backgroundColor: "#0068DB", padding: 0 }}
+>
+  This is where modal content goes.
+</Modal>
+);
+```
+
+<Canvas>
+  <Story
+    name="With custom styles"
+    args={{
+      closeButtonStyle: { opacity: 0.5, color: "#fff" },
+      children: (
+        <>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "between",
+              paddingTop: 40,
+              textAlign: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                color: "#fff",
+                width: "100%",
+                position: "relative",
+                top: 2,
+                zIndex: 5,
+                backgroundColor: "#0068DB",
+              }}
+            >
+              <Text size="xxl" as="h1" color="inherit" ccMargin="l none none">
+                When $#!^ hits the fan...
+              </Text>
+              <Text
+                size="l"
+                as="p"
+                color="inherit"
+                weight="400"
+                ccMargin="s none none"
+              >
+                Take a second to smile.
+              </Text>
+            </div>
+            <img
+              src={HotAir}
+              alt="custom style sample image"
+              width="100%"
+              style={{ position: "relative" }}
+            />
+          </div>
+        </>
+      ),
+      bodyStyle: {
+        padding: 0,
+        backgroundColor: "#0068DB",
+      },
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Loading
+
+To render a loading state, pass `loading={isVisible}` to the Modal.
+
+```jsx
+<Modal
+  isOpen={isOpen}
+  label="Describe modal for screen reader users"
+  onRequestClose={handleClose}
+  loading={{isVisible, message: "Well this is taking longer than expected.}}
+>
+  This is where modal content goes.
+</Modal>
+);
+```
+
+<Canvas>
+  <Story
+    name="Loading"
+    args={{
+      loading: {
+        isVisible: true,
+        message: "Well this is taking longer than expected.",
+      },
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Alert
+
+To render an alert, pass `alert={{isVisible}}` to the Modal. The alert will overlay the original Modal content.
+
+```jsx
+<Modal
+  isOpen={isOpen}
+  label="Describe modal for screen reader users"
+  onRequestClose={handleClose}
+  alert={{
+    isVisible,
+    title: "Something went wrong.",
+    message: "Hit the button below to load the list again.",
+    actionLabel: "Try Again",
+    actionOnClick: () => {},
+  }}
+>
+  This is where modal content goes.
+</Modal>
+);
+```
+
+<Canvas>
+  <Story
+    name="Alert"
+    args={{
+      children: (
+        <div style={{ textAlign: "center" }}>
+          <img src={SampleImage} alt="sample image" width="100%" />
+          <Text size="xl" as="h1" color="default">
+            You look wonderful, today.
+          </Text>
+          <Text size="l" as="p" color="subtle" weight="400" ccMargin="s none m">
+            Here's a key to the city.
+          </Text>
+        </div>
+      ),
+      alert: {
+        isVisible: true,
+        title: "Something went wrong.",
+        message: "Hit the button below to load the list again.",
+        actionLabel: "Try Again",
+        actionOnClick: () => {},
+      },
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Default" />

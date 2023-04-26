@@ -1,0 +1,75 @@
+body.modal-open,
+body.ReactModal__Body--open {
+  overflow: hidden;
+}
+
+.modal-base.ReactModal__Overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--cc_color_background_backdrop);
+  z-index: 900;
+  opacity: 0;
+  transition: opacity 300ms;
+}
+.modal-base.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+.modal-base.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+// content styles
+.modal-base.ReactModal__Content {
+  transition: all 200ms ease-out;
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+}
+.modal-base.ReactModal__Content--after-open {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+.modal-base.ReactModal__Content--before-close {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+}
+
+.modal-base--no-animation.ReactModal__Overlay {
+  transition: opacity 0s;
+}
+
+// content styles
+.modal-base.ReactModal__Content {
+  transition: all 0s ease-out;
+}
+
+.modal-overflow-y-auto {
+  overflow-y: auto;
+}
+
+.modal-overflow-x-hidden {
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+/* Set the width of the whole scrollbar */
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Handle */
+/* set the color of the scrollbar, the radius of its corners and the width in relation to the width set above*/
+
+::-webkit-scrollbar-thumb {
+  background: rgb(150, 150, 150);
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  border: 6px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+}
