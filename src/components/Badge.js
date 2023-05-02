@@ -59,8 +59,7 @@ const getBorderColor = (color) => {
 const Container = styled.span`
   display: inline-flex;
   align-items: center;
-  /* height: var(--cc_size_avatar_s); */
-  /* padding: 0 var(--cc_size_spacing_s); */
+  justify-content: center;
   background-color: ${(props) => getBgColor(props.color)};
   border-radius: var(--cc_size_border_radius_pill);
   border: var(--cc_size_border_width_s) solid
@@ -77,14 +76,13 @@ const Icon = styled.i`
 const Text = styled.span`
   color: var(--cc_color_text_subtle);
   font-family: 'Averta', system-ui, sans-serif;
-  /* font-size: var(--cc_size_text_xxs); */
   font-weight: 600;
+  font-size: ${(props) => getFontSize(props.size)}px;
   text-transform: uppercase;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   letter-spacing: 0.25px;
-  font-size: ${(props) => getFontSize(props.size)}px;
 `;
 
 const BadgeStatus = ({
