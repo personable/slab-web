@@ -42,6 +42,7 @@ The content that displays inside `Avatar` is based on a priority/fallback system
 1. If a `src` exists (i.e. the user's profile photo), then the image will display.
 1. If there is no `src`, `Avatar` will attempt to get initials automatically based off the `name` prop. A max of 3 initials will be displayed. Alternatively, you can override the default initials behavior and set your own initials manually using the `customInitials` prop (i.e. you have a row of Avatars and want to show a `+15` on the last one of the row to indicate there are more that aren't being displayed in that row).
 1. If there is no `src`, `name`, or `customInitials` (i.e. a newly invited user who hasn't finished setting up their account), we'll display a fallback generic user icon based off the `iconName` prop (which uses the [MDI](https://pictogrammers.com/library/mdi/) icon names and has a default value of "account". )
+1. You can also set a custom fallback icon (i.e. in the case of an avatar representing a Group, which may have neither a name or a photo) by using the `iconName` prop.
 
 <Canvas>
   <Story
