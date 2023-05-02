@@ -135,8 +135,7 @@ const Image = styled.div`
   background-size: cover;
   background-position: 50%;
   background-color: var(--cc_color_background_3);
-  border: 2px solid;
-  border-color: ${(props) => props.avatarColor ? props.avatarColor : 'transparent'};
+  border: ${(props) => props.avatarColor ? `2px solid ${props.avatarColor}` : null };
   color: var(--cc_color_text_subtle);
   /* ${(props) => props.showNameOnHover ? hintTooltipStyles : null}; */
 `;
