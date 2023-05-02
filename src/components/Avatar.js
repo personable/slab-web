@@ -143,9 +143,10 @@ const Image = styled.div`
 
 const Initials = styled.div`
   font-size: ${(props) => `${props.textSize}px`};
-  font-weight: 600;
+  font-weight: 700;
   text-align: center;
   font-family: 'Averta', system-ui, sans-serif;
+  text-transform: uppercase;
 `;
 
 // const IconBadgeBase = styled.i`
@@ -176,7 +177,7 @@ const Initials = styled.div`
 // };
 
 const AvatarInitials = ({ initials, avatarSize }) => {
-  const textSize = Math.round(avatarSize / 2.4);
+  const textSize = Math.round(avatarSize / 2.5);
   return <Initials textSize={textSize}>{initials}</Initials>;
 };
 
