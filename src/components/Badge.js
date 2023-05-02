@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as tokens from "./shared/tokens.js";
 
-// end styled components
 const getSize = (size) => {
   if (size === 'small') {
     return 'var(--cc_size_avatar_xs)';
@@ -67,12 +65,14 @@ const Container = styled.span`
   padding: ${(props) => `0 ${getHorizontalPadding(props.size)}`};
   height: ${(props) => getSize(props.size)};
 `;
+
 const Icon = styled.i`
   color: var(--cc_color_text_subtle);
   font-size: 15px;
   font-size: ${(props) => getIconSize(props.size)}px;
   margin-inline-end: var(--cc_size_spacing_xs);
 `;
+
 const Text = styled.span`
   color: var(--cc_color_text_subtle);
   font-family: 'Averta', system-ui, sans-serif;
