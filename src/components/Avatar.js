@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import PropTypes from 'prop-types';
-import ScreenReaderContent from './shared/ScreenReaderContent';
+import ScreenReaderContent from './ScreenReaderContent';
 import * as tokens from "./shared/tokens.js";
 
 const avatarSizes = {
@@ -53,7 +53,7 @@ const Avatar = ({
   style,
 }) => {
   const avatarSize = typeof size === 'number' ? size : avatarSizes[size];
-  const initials = name ? name.split(' ').map(x => x.charAt(0)).join('').substr(0, 3).toUpperCase() : null
+  const initials = name ? name.split(' ').map((x) => x.charAt(0)).join('').substr(0, 3).toUpperCase() : null
   return (
     <Image
       imageSrc={src}
@@ -65,15 +65,15 @@ const Avatar = ({
       style={style}
     >
       {!src && !initials ? (
-        <i className={`mdi mdi-${iconName}`}/>
+        <i className={`mdi mdi-${iconName}`} />
       ) : null}
 
       {!src && initials ? (
-        <AvatarInitials avatarSize={avatarSize} initials={customInitials ? customInitials : initials} />
+        <AvatarInitials avatarSize={avatarSize} initials={customInitials || initials} />
       ) : null}
 
-      {name ? ( 
-        <ScreenReaderContent>{name}</ScreenReaderContent> 
+      {name ? (
+        <ScreenReaderContent>{name}</ScreenReaderContent>
       ) : null}
     </Image>
   );
