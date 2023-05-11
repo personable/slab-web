@@ -1,0 +1,247 @@
+import { Canvas, Meta, Story, ArgsTable } from "@storybook/addon-docs";
+import Avatar from "../components/Avatar";
+import Button from "../components/Button";
+import Spinner from "../components/Spinner";
+
+<Meta title="Avatar" component={Avatar} />
+
+export const Template = (args) => <Avatar {...args} />;
+
+# 🙂 Avatar
+
+`Avatar` is a component for rendering a user avatar.
+
+## Usage
+
+```jsx
+import Avatar from 'components/shared/DesignSystem/SlabTransferPortal/Avatar';
+
+---
+
+<Avatar name="Jean-Ralphio Saperstein" />
+```
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      name: "Jean-Ralphio Saperstein",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="default" />
+
+## Name / Image / Initials
+
+The content that displays inside `Avatar` is based on a priority/fallback system.
+1. If a `src` exists (i.e. the user's profile photo), then the image will display.
+1. If there is no `src`, `Avatar` will attempt to get initials automatically based off the `name` prop. A max of 3 initials will be displayed. Alternatively, you can override the default initials behavior and set your own initials manually using the `customInitials` prop (i.e. you have a row of Avatars and want to show a `+15` on the last one of the row to indicate there are more that aren't being displayed in that row).
+1. If there is no `src`, `name`, or `customInitials` (i.e. a newly invited user who hasn't finished setting up their account), we'll display a fallback generic user icon based off the `iconName` prop (which uses the [MDI](https://pictogrammers.com/library/mdi/) icon names and has a default value of "account". )
+1. You can also set a custom fallback icon (i.e. in the case of an avatar representing a Group, which may have neither a name or a photo) by using the `iconName` prop.
+
+<Canvas>
+  <Story
+    name="with profile photo"
+    args={{
+      name: "Jean-Ralphio Saperstein",
+      src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="custom initials"
+    args={{
+      name: "Jean-Ralphio Saperstein",
+      customInitials: "+15"
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="no photo"
+    args={{
+      name: "Jean-Ralphio Saperstein",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="generic fallback"
+    args={{
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="custom icon fallback"
+    args={{
+      iconName: "account-group"
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Sizes
+Avatar sizes are mapped to the `size_avatar` set of [design tokens](https://github.com/CompanyCam/slab/blob/develop/src/shared/tokens/properties/size.json#L74). However, you can also set the size as a number if one of the tokens doesn't work.
+
+<Canvas>
+  <Story
+    name="small"
+    args={{
+      name: "Jean-Ralphio Saperstein",
+      size: "small"
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="medium"
+    args={{
+      name: "Jean-Ralphio Saperstein",
+      size: "medium"
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="large"
+    args={{
+      name: "Jean-Ralphio Saperstein",
+      size: "large",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="custom size"
+    args={{
+      name: "Jean-Ralphio Saperstein",
+      size: 64,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Colors
+To represent a user from a collaborating company, use the `color` prop to create a color border around the Avatar. The `color` prop accepts any string, but it's recommended you use our [`collab` token](https://github.com/CompanyCam/slab/blob/develop/src/shared/tokens/properties/color.json#L311) CSS variables (i.e. `"var(--cc_color_collab_navy)"`).
+
+<Canvas>
+  <Story
+    name="collaborator"
+    args={{
+      name: "Jean-Ralphio Saperstein",
+      color: "var(--cc_color_collab_green)",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="owner"
+    args={{
+      name: "Jean-Ralphio Saperstein",
+      color: "var(--cc_color_collab_owner)",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<!-- ## Tooltip Hover
+Add the `showNameOnHover` prop if you want to show a tooltip with the Avatar's `name` inside. You can choose a `tooltipPosition` as well if the default (`top-center`) doesn't work for you.
+
+<Canvas>
+  <Story
+    name="tooltip top-center"
+    args={{
+      name: "Jean-Ralphio Saperstein",
+      src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
+      showNameOnHover: true,
+      style: {"margin": "32px -32px 32px 64px"}
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="tooltip top-left"
+    args={{
+      name: "Jean-Ralphio Saperstein",
+      src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
+      showNameOnHover: true,
+      tooltipPosition: "top-left",
+      style: {"margin": "32px -32px 32px 64px"}
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="tooltip top-right"
+    args={{
+      name: "Jean-Ralphio Saperstein",
+      src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
+      showNameOnHover: true,
+      tooltipPosition: "top-right",
+      style: {"margin": "32px -32px 32px 64px"}
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="tooltip bottom-center"
+    args={{
+      name: "Jean-Ralphio Saperstein",
+      src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
+      showNameOnHover: true,
+      tooltipPosition: "bottom-center",
+      style: {"margin": "32px -32px 32px 64px"}
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="tooltip bottom-left"
+    args={{
+      name: "Jean-Ralphio Saperstein",
+      src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
+      showNameOnHover: true,
+      tooltipPosition: "bottom-left",
+      style: {"margin": "32px -32px 32px 64px"}
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="tooltip bottom-right"
+    args={{
+      name: "Jean-Ralphio Saperstein",
+      src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
+      showNameOnHover: true,
+      tooltipPosition: "bottom-right",
+      style: {"margin": "32px -32px 32px 64px"}
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas> -->
+
+
+
+<!-- ## Icon Badge
+There may be times when we want to append an icon badge to an Avatar. The only example currently is a `isHomeowner` prop which adds a house icon in the top right corner of the Avatar. This is more a proof of concept at the moment and likely won't be used much - this may become more robust in the future.
+
+<Canvas>
+  <Story
+    name="homeowner no photo"
+    args={{
+      name: "Jean-Ralphio Saperstein",
+      isHomeowner: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas> -->
