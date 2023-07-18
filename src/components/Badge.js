@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import React from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const getSize = (size) => {
@@ -20,7 +20,7 @@ const getFontSize = (size) => {
 
 const getIconSize = (size) => {
   if (size === 'small') {
-    return '12';
+    return '11';
   } else {
     return '14';
   }
@@ -64,19 +64,21 @@ const Container = styled.span`
     ${(props) => getBorderColor(props.color)};
   padding: ${(props) => `0 ${getHorizontalPadding(props.size)}`};
   height: ${(props) => getSize(props.size)};
+  line-height: 1.5;
 `;
 
 const Icon = styled.i`
+  margin-inline-end: var(--cc_size_spacing_xs);
   color: var(--cc_color_text_subtle);
   font-size: 15px;
   font-size: ${(props) => getIconSize(props.size)}px;
-  margin-inline-end: var(--cc_size_spacing_xs);
+  line-height: 0;
 `;
 
 const Text = styled.span`
   color: var(--cc_color_text_subtle);
   font-family: 'Averta', system-ui, sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: ${(props) => getFontSize(props.size)}px;
   text-transform: uppercase;
   white-space: nowrap;
@@ -85,7 +87,7 @@ const Text = styled.span`
   letter-spacing: 0.25px;
 `;
 
-const BadgeStatus = ({
+const Badge = ({
     children,
     className,
     color,
@@ -101,7 +103,7 @@ const BadgeStatus = ({
   );
 };
 
-BadgeStatus.propTypes = {
+Badge.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   color: PropTypes.oneOf([
@@ -120,7 +122,7 @@ BadgeStatus.propTypes = {
   style: PropTypes.object,
 };
 
-BadgeStatus.defaultProps = {
+Badge.defaultProps = {
   className: undefined,
   iconName: undefined,
   color: 'info',
@@ -128,4 +130,4 @@ BadgeStatus.defaultProps = {
   style: undefined,
 };
 
-export default BadgeStatus;
+export default Badge;
