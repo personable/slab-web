@@ -78,7 +78,7 @@ const Icon = styled.i`
 const Text = styled.span`
   color: var(--cc_color_text_subtle);
   font-family: 'Averta', system-ui, sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   font-size: ${(props) => getFontSize(props.size)}px;
   text-transform: uppercase;
   white-space: nowrap;
