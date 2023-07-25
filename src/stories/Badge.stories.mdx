@@ -7,7 +7,7 @@ import Spinner from "../components/Spinner";
 
 export const Template = (args) => <Badge {...args} />;
 
-# 🏷️ Badge
+# 📛 Badge
 
 `Badge` is used to display brief status-related information. For longer text, please use `Notice`.
 
@@ -16,18 +16,18 @@ The most common application for a `Badge` is in a list item, to display the stat
 ## Usage
 
 ```jsx
-import Badge from 'components/shared/DesignSystem/SlabTransferPortal/Badge';
+import Badge from 'components/shared/DesignSystem/SlabTransferPortal/Badges/Badge';
 
 ---
 
-<Badge children="Badge" />
+<Badge iconName="account-check">I'm a Badge</Badge>
 ```
 
 <Canvas>
   <Story
     name="default"
     args={{
-      children: "Badge",
+      children: "I'm a badge",
       iconName: "account-check"
     }}
   >
@@ -46,15 +46,6 @@ import Badge from 'components/shared/DesignSystem/SlabTransferPortal/Badge';
       children: "Invited",
       iconName: "account-check",
       color: "success",
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="new"
-    args={{
-      children: "New",
-      color: "caution"
     }}
   >
     {Template.bind({})}
@@ -133,16 +124,6 @@ import Badge from 'components/shared/DesignSystem/SlabTransferPortal/Badge';
     {Template.bind({})}
   </Story>
   <Story
-    name="new-small"
-    args={{
-      children: "New",
-      color: "caution",
-      size: "small",
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-  <Story
     name="upgrade-small"
     args={{
       children: "Upgrade",
@@ -202,6 +183,28 @@ import Badge from 'components/shared/DesignSystem/SlabTransferPortal/Badge';
       children: "Assigned",
       iconName: "account-check",
       color: "assigned",
+      size: "small",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## `BadgeNew` Variation
+We will be including a `BadgeNew` in the folder structure to use for when you need to call out a new feature. This should always be the same size (`small`), color (`caution`), and text, so baking everything into a component (including translations for the "New" text) that extends the regular `Badge` component makes sense in this case for ease of use and DRY behavior.
+
+```jsx
+import BadgeNew from 'components/shared/DesignSystem/SlabTransferPortal/Badges/BadgeNew';
+
+<BadgeNew />
+```
+
+<Canvas>
+  <Story
+    name="new"
+    args={{
+      children: "New",
+      color: "caution",
       size: "small",
     }}
   >

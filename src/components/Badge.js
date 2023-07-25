@@ -2,38 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const getSize = (size) => {
-  if (size === 'small') {
-    return 'var(--cc_size_avatar_xs)';
-  } else {
-    return 'var(--cc_size_avatar_s)';
-  }
-};
-
-const getFontSize = (size) => {
-  if (size === 'small') {
-    return '9';
-  } else {
-    return '10';
-  }
-};
-
-const getIconSize = (size) => {
-  if (size === 'small') {
-    return '11';
-  } else {
-    return '14';
-  }
-};
-
-const getHorizontalPadding = (size) => {
-  if (size === 'small') {
-    return '6px';
-  } else {
-    return 'var(--cc_size_spacing_s)';
-  }
-};
-
 const getBgColor = (color) => {
   if (color === 'info') {
     return 'var(--cc_color_background_2)';
@@ -66,16 +34,15 @@ const Container = styled.span`
   border-radius: var(--cc_size_border_radius_pill);
   border: var(--cc_size_border_width_s) solid
     ${(props) => getBorderColor(props.color)};
-  padding: ${(props) => `0 ${getHorizontalPadding(props.size)}`};
-  height: ${(props) => getSize(props.size)};
+  padding: ${(props) => props.size === 'small' ? '6px' : 'var(--cc_size_spacing_s)'};
+  height: ${(props) => props.size === 'small' ? 'var(--cc_size_avatar_xs)' : 'var(--cc_size_avatar_s)'};
   line-height: 1.5;
 `;
 
 const Icon = styled.i`
   margin-inline-end: var(--cc_size_spacing_xs);
   color: var(--cc_color_text_subtle);
-  font-size: 15px;
-  font-size: ${(props) => getIconSize(props.size)}px;
+  font-size: ${(props) => props.size === 'small' ? '11px' : '14px'};
   line-height: 0;
 `;
 
@@ -83,7 +50,7 @@ const Text = styled.span`
   color: var(--cc_color_text_subtle);
   font-family: 'Averta', system-ui, sans-serif;
   font-weight: 600;
-  font-size: ${(props) => getFontSize(props.size)}px;
+  font-size: ${(props) => props.size === 'small' ? '9px' : '10px'};
   text-transform: uppercase;
   white-space: nowrap;
   overflow: hidden;
