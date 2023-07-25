@@ -39,6 +39,8 @@ const getBgColor = (color) => {
     return 'var(--cc_color_background_2)';
   } else if (color === 'upgrade' || color === 'add_on') {
     return `var(--cc_color_brand_${color}_alpha_20)`;
+  } else if (color === 'assigned') {
+    return 'rgba(231, 97, 25, 0.2)';
   } else {
     return `var(--cc_color_utility_${color}_alpha_20)`;
   }
@@ -49,6 +51,8 @@ const getBorderColor = (color) => {
     return 'var(--cc_color_border_default)';
   } else if (color === 'upgrade' || color === 'add_on') {
     return `var(--cc_color_brand_${color}_alpha_60)`;
+  } else if (color === 'assigned') {
+    return 'rgba(231, 97, 25, 0.6)';
   } else {
     return `var(--cc_color_utility_${color}_alpha_60)`;
   }
@@ -113,6 +117,7 @@ Badge.propTypes = {
     'destroy',
     'upgrade',
     'add_on',
+    'assigned',
   ]),
   iconName: PropTypes.string,
   size: PropTypes.oneOf([
