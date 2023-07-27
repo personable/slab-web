@@ -152,84 +152,18 @@ To represent a user from a collaborating company, use the `color` prop to create
   </Story>
 </Canvas>
 
-<!-- ## Tooltip Hover
-Add the `showNameOnHover` prop if you want to show a tooltip with the Avatar's `name` inside. You can choose a `tooltipPosition` as well if the default (`top-center`) doesn't work for you.
-
-<Canvas>
-  <Story
-    name="tooltip top-center"
-    args={{
-      name: "Jean-Ralphio Saperstein",
-      src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
-      showNameOnHover: true,
-      style: {"margin": "32px -32px 32px 64px"}
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="tooltip top-left"
-    args={{
-      name: "Jean-Ralphio Saperstein",
-      src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
-      showNameOnHover: true,
-      tooltipPosition: "top-left",
-      style: {"margin": "32px -32px 32px 64px"}
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="tooltip top-right"
-    args={{
-      name: "Jean-Ralphio Saperstein",
-      src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
-      showNameOnHover: true,
-      tooltipPosition: "top-right",
-      style: {"margin": "32px -32px 32px 64px"}
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="tooltip bottom-center"
-    args={{
-      name: "Jean-Ralphio Saperstein",
-      src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
-      showNameOnHover: true,
-      tooltipPosition: "bottom-center",
-      style: {"margin": "32px -32px 32px 64px"}
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="tooltip bottom-left"
-    args={{
-      name: "Jean-Ralphio Saperstein",
-      src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
-      showNameOnHover: true,
-      tooltipPosition: "bottom-left",
-      style: {"margin": "32px -32px 32px 64px"}
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="tooltip bottom-right"
-    args={{
-      name: "Jean-Ralphio Saperstein",
-      src: "https://img.companycam.com/dFawdteZ9ZZFSk7UQpo5XPHzNP_2cKJwM6TLGJylMiE/rs:fit:300:300/q:75/aHR0cHM6Ly9jb21w/YW55Y2FtLXBlbmRp/bmcuczMuYW1hem9u/YXdzLmNvbS8xNzk1/YjkwMi0xNDQ2LTQw/ZjgtYTFkZS0zZDIx/MjVjMzZhYTAuanBl/Zw",
-      showNameOnHover: true,
-      tooltipPosition: "bottom-right",
-      style: {"margin": "32px -32px 32px 64px"}
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-</Canvas> -->
-
-
+## Tooltip Hover
+You can use the `hint` library that's included in the webapp if you want to show a tooltip with the Avatar's `name` inside on hover. Just add `hint hint--[position]` to the `className` prop. The `[position]` value refers to where the tooltip will render relative to the avatar, and has the following options:
+- top
+- top-left
+- top-center
+- top-right
+- bottom
+- bottom-left
+- bottom-center
+- bottom-right
+- left
+- right
 
 <!-- ## Icon Badge
 There may be times when we want to append an icon badge to an Avatar. The only example currently is a `isHomeowner` prop which adds a house icon in the top right corner of the Avatar. This is more a proof of concept at the moment and likely won't be used much - this may become more robust in the future.
