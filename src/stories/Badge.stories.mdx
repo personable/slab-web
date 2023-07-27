@@ -110,6 +110,14 @@ import Badge from 'components/shared/DesignSystem/SlabTransferPortal/Badges/Badg
     {Template.bind({})}
   </Story>
   <Story
+    name="text-only"
+    args={{
+      children: "Only Text Here",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
     name="icon-only"
     args={{
       iconName: "crown-outline",
@@ -191,6 +199,24 @@ import Badge from 'components/shared/DesignSystem/SlabTransferPortal/Badges/Badg
       children: "Assigned",
       iconName: "account-check",
       color: "assigned",
+      size: "small",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="text-only-small"
+    args={{
+      children: "Only Text Here",
+      size: "small",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="icon-only-small"
+    args={{
+      iconName: "crown-outline",
       size: "small",
     }}
   >
