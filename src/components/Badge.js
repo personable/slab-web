@@ -30,6 +30,7 @@ const Container = styled.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: var(--cc_size_spacing_xs);
   background-color: ${(props) => getBgColor(props.color)};
   border-radius: var(--cc_size_border_radius_pill);
   border: var(--cc_size_border_width_s) solid
@@ -40,7 +41,6 @@ const Container = styled.span`
 `;
 
 const Icon = styled.i`
-  margin-inline-end: var(--cc_size_spacing_xs);
   color: var(--cc_color_text_subtle);
   font-size: ${(props) => props.size === 'small' ? '11px' : '14px'};
   line-height: 0;
@@ -56,6 +56,10 @@ const Text = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
   letter-spacing: 0.25px;
+
+  &:empty {
+    display: none;
+  }
 `;
 
 const Badge = ({
@@ -75,7 +79,7 @@ const Badge = ({
 };
 
 Badge.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   className: PropTypes.string,
   color: PropTypes.oneOf([
     'caution',
