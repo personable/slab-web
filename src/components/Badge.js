@@ -41,13 +41,13 @@ const Container = styled.span`
 `;
 
 const Icon = styled.i`
-  color: var(--cc_color_text_subtle);
+  color: var(--cc_color_text_default);
   font-size: ${(props) => props.size === 'small' ? '11px' : '14px'};
   line-height: 0;
 `;
 
 const Text = styled.span`
-  color: var(--cc_color_text_subtle);
+  color: var(--cc_color_text_default);
   font-family: 'Averta', system-ui, sans-serif;
   font-weight: 600;
   font-size: ${(props) => props.size === 'small' ? '9px' : '10px'};
