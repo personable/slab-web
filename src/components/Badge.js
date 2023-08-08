@@ -3,26 +3,40 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const getBgColor = (color) => {
-  if (color === 'info') {
-    return 'var(--cc_color_background_2)';
-  } else if (color === 'upgrade' || color === 'add_on') {
-    return `var(--cc_color_brand_${color}_alpha_20)`;
-  } else if (color === 'assigned') {
-    return 'rgba(231, 97, 25, 0.2)';
-  } else {
-    return `var(--cc_color_utility_${color}_alpha_20)`;
+  switch (color) {
+    case 'info':
+      return 'var(--cc_color_background_2)';
+
+    case 'upgrade':
+      return 'var(--cc_color_brand_upgrade_alpha_20)';
+
+    case 'assigned':
+      return 'rgba(231, 97, 25, 0.2)';
+
+    case 'add_on':
+      return 'rgba(121, 73, 209, 0.2)';
+
+    default:
+      return `var(--cc_color_utility_${color}_alpha_20)`;
   }
 };
 
 const getBorderColor = (color) => {
-  if (color === 'info') {
-    return 'var(--cc_color_border_default)';
-  } else if (color === 'upgrade' || color === 'add_on') {
-    return `var(--cc_color_brand_${color}_alpha_60)`;
-  } else if (color === 'assigned') {
-    return 'rgba(231, 97, 25, 0.6)';
-  } else {
-    return `var(--cc_color_utility_${color}_alpha_60)`;
+  switch (color) {
+    case 'info':
+      return 'var(--cc_color_border_default)';
+
+    case 'upgrade':
+      return `var(--cc_color_brand_upgrade_alpha_60)`;
+
+    case 'assigned':
+      return 'rgba(231, 97, 25, 0.6)';
+
+    case 'add_on':
+      return 'rgba(121, 73, 209, 0.6)';
+
+    default:
+      return `var(--cc_color_utility_${color}_alpha_60)`;
   }
 };
 
